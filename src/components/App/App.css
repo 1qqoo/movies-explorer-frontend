@@ -1,0 +1,19 @@
+@import url('../../vendor/normalize.css');
+@import url('../../vendor/fonts/fonts.css');
+
+.body {
+  color: white;
+  min-width: 320px;
+  margin: 0 auto;
+  font-family: 'Inter', 'SuisseIntl', 'Arial', sans-serif;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+.hero {
+  background-color: rgba(7, 48, 66, 1);
+}

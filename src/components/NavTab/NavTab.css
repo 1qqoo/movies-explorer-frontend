@@ -1,0 +1,32 @@
+.navTab {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navTab__link {
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #fff;
+}
+
+.navTab__link:hover {
+  opacity: 0.8;
+}
+
+.navTab__link_type_active {
+  padding: 8px 20px;
+  color: black;
+  border-radius: 3px;
+  background: #3ddc84;
+  transition: all 0.1s ease;
+}
+
+.navTab__link_type_active:hover {
+  transform: scale(1.05);
+  opacity: 0.7;
+}
