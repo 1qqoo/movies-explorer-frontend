@@ -13,25 +13,74 @@ function Techs() {
           </p>
           <ul className="techs__spisok">
             <li className="techs__spisok-element">
-              <p className="techs__spisok-text">HTML</p>
+              <a
+                href="https://doka.guide/html/html"
+                target="_blank"
+                rel="noreferrer"
+                className="techs__spisok-link"
+              >
+                HTML
+              </a>
             </li>
             <li className="techs__spisok-element">
-              <p className="techs__spisok-text">CSS</p>
+              <a
+                href="https://doka.guide/css/"
+                target="_blank"
+                rel="noreferrer"
+                className="techs__spisok-link"
+              >
+                CSS
+              </a>
             </li>
             <li className="techs__spisok-element">
-              <p className="techs__spisok-text">JS</p>
+              <a
+                href="https://doka.guide/js/"
+                target="_blank"
+                rel="noreferrer"
+                className="techs__spisok-link"
+              >
+                JS
+              </a>
             </li>
             <li className="techs__spisok-element">
-              <p className="techs__spisok-text">React</p>
+              <a
+                href="https://doka.guide/js/react-and-alternatives/"
+                target="_blank"
+                rel="noreferrer"
+                className="techs__spisok-link"
+              >
+                React
+              </a>
             </li>
             <li className="techs__spisok-element">
-              <p className="techs__spisok-text">Git</p>
+              <a
+                href="https://doka.guide/tools/git-cli/"
+                target="_blank"
+                rel="noreferrer"
+                className="techs__spisok-link"
+              >
+                Git
+              </a>
             </li>
             <li className="techs__spisok-element">
-              <p className="techs__spisok-text">Express.js</p>
+              <a
+                href="https://doka.guide/tools/nodejs/"
+                target="_blank"
+                rel="noreferrer"
+                className="techs__spisok-link"
+              >
+                Express.js
+              </a>
             </li>
             <li className="techs__spisok-element">
-              <p className="techs__spisok-text">mongoDB</p>
+              <a
+                href="https://www.mongodb.com/docs/"
+                target="_blank"
+                rel="noreferrer"
+                className="techs__spisok-link"
+              >
+                MongoDB
+              </a>
             </li>
           </ul>
         </div>
