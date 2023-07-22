@@ -1,6 +1,6 @@
 import './Header.css';
 import Logo from '../../image/logo.svg';
-import NavTab from '../NavTab/NavTab';
+import Navigation from '../Navigation/Navigation';
 import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
@@ -22,7 +22,7 @@ function Header() {
             alt="Логотип"
           />
         </Link>
-        <NavTab />
+        <Navigation />
       </div>
     </header>
   );
