@@ -26,3 +26,9 @@
   transition: all 0.3s ease;
   height: 38px;
 }
+
+@media screen and (max-width: 800px) {
+  .header__container {
+    padding: 18px 30px;
+  }
+}

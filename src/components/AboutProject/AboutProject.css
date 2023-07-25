@@ -1,8 +1,8 @@
-.aboutProject {
+.about-project {
   width: 100%;
 }
 
-.aboutProject__container {
+.about-project__container {
   max-width: 1280px;
   min-width: 320px;
   padding: 93px 70px 0;
@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-.aboutProject-info {
+.about-project-info {
   display: flex;
   gap: 52px;
 }
@@ -92,4 +92,31 @@
   letter-spacing: -0.88px;
   padding: 0 0 23px;
   border-block-end: solid 1px;
+}
+
+@media screen and (max-width: 800px) {
+  .about-project__container {
+    padding: 73px 50px 0;
+  }
+
+  .about-project-info {
+    gap: 38px;
+  }
+
+  .about-project__scheme {
+    margin: 93px 0 90px;
+  }
+
+  .about-project__backend {
+    width: 21%;
+  }
+
+  .two-columns__main-text {
+    padding-bottom: 22px;
+  }
+
+  .two-columns__main-paragraph {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }

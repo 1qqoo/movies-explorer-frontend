@@ -5,6 +5,11 @@ export default function Promo() {
   return (
     <section className="promo">
       <div className="promo__container">
+        <img
+          src={logo}
+          alt="Лого - Земной шар"
+          className="promo__logo"
+        />
         <div className="promo__about-project">
           <h1 className="promo__title">
             Учебный проект студента факультета Веб&#8209;разработки.
@@ -21,11 +26,6 @@ export default function Promo() {
             Узнать больше
           </a>
         </div>
-        <img
-          src={logo}
-          alt="Лого - Земной шар"
-          className="promo__logo"
-        />
       </div>
     </section>
   );

@@ -2,10 +2,10 @@ import './AboutProject.css';
 
 function AboutProject() {
   return (
-    <section className="aboutProject">
-      <div className="aboutProject__container">
+    <section className="about-project">
+      <div className="about-project__container">
         <h2 className="section-title">О проекте</h2>
-        <div className="aboutProject-info">
+        <div className="about-project-info">
           <article className="two-columns">
             <h4 className="two-columns__main-text">
               Дипломный проект включал 5 этапов
