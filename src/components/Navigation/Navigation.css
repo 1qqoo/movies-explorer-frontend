@@ -30,3 +30,20 @@
   transform: scale(1.05);
   opacity: 0.7;
 }
+
+@media screen and (max-width: 400px) {
+  .navigation {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .navigation__link {
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .navigation__link_type_active {
+    padding: 5px 12px;
+  }
+}

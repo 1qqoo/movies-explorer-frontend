@@ -5,7 +5,7 @@
 .about-project__container {
   max-width: 1280px;
   min-width: 320px;
-  padding: 93px 70px 0;
+  padding: 111px 70px 0;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -69,7 +69,7 @@
 
 .two-columns__main-text {
   margin: 0;
-  padding: 52px 0 26px;
+  padding: 70px 0 26px;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -92,11 +92,12 @@
   letter-spacing: -0.88px;
   padding: 0 0 23px;
   border-block-end: solid 1px;
+  margin: 0;
 }
 
 @media screen and (max-width: 800px) {
   .about-project__container {
-    padding: 73px 50px 0;
+    padding: 91px 50px 0;
   }
 
   .about-project-info {
@@ -118,5 +119,67 @@
   .two-columns__main-paragraph {
     font-size: 12px;
     line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .about-project__container {
+    padding: 71px 18px 0;
+  }
+
+  .about-project-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding: 0 0 28px;
+    margin-bottom: 5px;
+  }
+
+  .two-columns__main-text {
+    padding: 56px 0 18px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about-project-info {
+    gap: 0;
+  }
+
+  .two-columns__main-paragraph {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__scheme {
+    margin: 59px 0 90px;
+  }
+
+  .about-project__backend {
+    width: 35%;
+    gap: 9px;
+  }
+
+  .about-project__backend-duration {
+    font-size: 11px;
+    line-height: normal;
+    padding: 11px 0;
+  }
+
+  .about-project__frontend {
+    gap: 8px;
+  }
+
+  .about-project__frontend-duration {
+    font-size: 11px;
+    padding: 12px 0;
+  }
+
+  .about-project__scheme-title {
+    font-family: Suisse Intl;
+    font-size: 11px;
   }
 }

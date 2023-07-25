@@ -7,6 +7,11 @@ function AboutMe() {
       <div className="about-me__container">
         <h2 className="section-title">Студент</h2>
         <div className="about-me__bio">
+          <img
+            className="about-me__image"
+            src={avatar}
+            alt="фотография студента, который пережил backend"
+          ></img>
           <div className="about-me__bio-info">
             <h3 className="about-me__name">Дмитрий</h3>
             <p className="about-me__age">Фронтенд-разработчик, 28 лет</p>
@@ -26,11 +31,6 @@ function AboutMe() {
               Github
             </a>
           </div>
-          <img
-            className="about-me__image"
-            src={avatar}
-            alt="фотография студента, который пережил backend"
-          ></img>
         </div>
       </div>
     </section>

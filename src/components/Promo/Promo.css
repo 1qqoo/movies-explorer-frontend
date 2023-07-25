@@ -94,3 +94,28 @@
     margin-top: 72px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .promo__container {
+    padding: 70px 10px;
+    padding-bottom: 30px;
+  }
+  .promo__logo {
+    width: 210px;
+  }
+
+  .promo__title {
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -1.2px;
+  }
+
+  .promo__about-project {
+    padding: 44px 0 0;
+    gap: 24px;
+  }
+
+  .promo__learn-more-link {
+    margin-top: 56px;
+  }
+}

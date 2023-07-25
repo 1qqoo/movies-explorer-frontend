@@ -79,7 +79,7 @@ function Techs() {
                 rel="noreferrer"
                 className="techs__spisok-link"
               >
-                MongoDB
+                mongoDB
               </a>
             </li>
           </ul>

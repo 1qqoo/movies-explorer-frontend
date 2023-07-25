@@ -25,7 +25,7 @@
   line-height: 58px;
   letter-spacing: -2px;
   margin: 0;
-  padding: 71px 0 26px;
+  padding: 89px 0 26px;
 }
 
 .techs-info__paragraph {
@@ -40,11 +40,12 @@
 }
 
 .techs__spisok {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7, 90px);
   list-style-type: none;
   gap: 10px;
   margin: 0;
-  padding: 100px 0;
+  padding: 100px 10px;
 }
 
 .techs__spisok-element {
@@ -81,7 +82,7 @@
     padding: 0 50px;
   }
   .techs-info__description {
-    padding: 61px 0 22px;
+    padding: 80px 0 22px;
   }
   .techs-info__paragraph {
     max-width: 440px;
@@ -90,11 +91,12 @@
     letter-spacing: -0.48px;
   }
   .techs__spisok {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(7, 12%);
     list-style-type: none;
     gap: 10px;
     margin: 0;
-    padding: 83px 0 90px;
+    padding: 83px 10px 90px;
   }
 
   .techs__spisok-link {
@@ -105,5 +107,31 @@
   .techs__spisok-element {
     min-width: 84px;
     height: 57px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .techs__container {
+    margin-top: 51px;
+  }
+
+  .techs-info__description {
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+    padding: 55px 0 24px;
+  }
+
+  .techs-info__paragraph {
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.44px;
+  }
+
+  .techs__spisok {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 48% 48%;
+    padding: 50px 10px 90px;
   }
 }
