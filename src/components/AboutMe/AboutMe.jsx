@@ -1,7 +1,7 @@
 import './AboutMe.css';
 import avatar from '../../image/avatar.jpg';
 
-function AboutMe() {
+const AboutMe = () => {
   return (
     <section className="about-me">
       <div className="about-me__container">
@@ -35,6 +35,6 @@ function AboutMe() {
       </div>
     </section>
   );
-}
+};
 
 export default AboutMe;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './BurgerMenu.css';
 import { NavLink } from 'react-router-dom';
 
-function BurgerMenu() {
+const BurgerMenu = () => {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
 
   const handleOpenBurger = () => {
@@ -70,6 +70,6 @@ function BurgerMenu() {
       )}
     </nav>
   );
-}
+};
 
 export default BurgerMenu;

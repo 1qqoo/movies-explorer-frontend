@@ -2,7 +2,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 import './Navigation.css';
 
-function Navigation({ loggedIn }) {
+const Navigation = ({ loggedIn }) => {
   return (
     <>
       {!loggedIn ? (
@@ -44,6 +44,6 @@ function Navigation({ loggedIn }) {
       )}
     </>
   );
-}
+};
 
 export default Navigation;

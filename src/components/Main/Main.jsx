@@ -5,7 +5,7 @@ import Techs from '../Techs/Techs';
 import AboutMe from '../AboutMe/AboutMe';
 import Portfolio from '../Portfolio/Portfolio';
 
-function Main() {
+const Main = () => {
   return (
     <main className="main">
       <Promo />
@@ -15,6 +15,6 @@ function Main() {
       <Portfolio />
     </main>
   );
-}
+};
 
 export default Main;

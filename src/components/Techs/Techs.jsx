@@ -1,6 +1,6 @@
 import './Techs.css';
 
-function Techs() {
+const Techs = () => {
   return (
     <section className="techs">
       <div className="techs__container">
@@ -87,6 +87,6 @@ function Techs() {
       </div>
     </section>
   );
-}
+};
 
 export default Techs;

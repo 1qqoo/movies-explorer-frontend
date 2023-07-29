@@ -1,6 +1,6 @@
 import './Portfolio.css';
 
-function Portfolio() {
+const Portfolio = () => {
   return (
     <section className="portfolio">
       <div className="portfolio__container">
@@ -42,6 +42,6 @@ function Portfolio() {
       </div>
     </section>
   );
-}
+};
 
 export default Portfolio;

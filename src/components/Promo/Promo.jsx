@@ -1,7 +1,7 @@
 import './Promo.css';
 import logo from '../../image/landing-logo.svg';
 
-export default function Promo() {
+const Promo = () => {
   return (
     <section className="promo">
       <div className="promo__container">
@@ -29,4 +29,6 @@ export default function Promo() {
       </div>
     </section>
   );
-}
+};
+
+export default Promo;

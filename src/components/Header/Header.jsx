@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Link, useLocation } from 'react-router-dom';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-function Header(loggedIn) {
+const Header = (loggedIn) => {
   const location = useLocation();
   const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
 
@@ -30,6 +30,6 @@ function Header(loggedIn) {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

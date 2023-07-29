@@ -1,6 +1,6 @@
 import './AboutProject.css';
 
-function AboutProject() {
+const AboutProject = () => {
   return (
     <section className="about-project">
       <div className="about-project__container">
@@ -38,6 +38,6 @@ function AboutProject() {
       </div>
     </section>
   );
-}
+};
 
 export default AboutProject;

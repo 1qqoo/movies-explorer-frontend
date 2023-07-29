@@ -4,7 +4,7 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import './App.css';
 
-function App() {
+const App = () => {
   const loggedIn = true;
   const isBurgerOpened = false;
 
@@ -14,11 +14,11 @@ function App() {
         loggedIn={loggedIn}
         isBurgerOpened={isBurgerOpened}
       />
-      {/* <Main /> */}
+      <Main />
       <Movies />
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
