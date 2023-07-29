@@ -1,10 +1,13 @@
 import './Header.css';
 import Logo from '../../image/logo.svg';
 import Navigation from '../Navigation/Navigation';
+import { useMediaQuery } from 'react-responsive';
 import { Link, useLocation } from 'react-router-dom';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-function Header() {
+function Header(loggedIn) {
   const location = useLocation();
+  const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
 
   return (
     <header
@@ -22,7 +25,8 @@ function Header() {
             alt="Логотип"
           />
         </Link>
-        <Navigation />
+
+        {isMobile ? <BurgerMenu /> : <Navigation loggedIn={loggedIn} />}
       </div>
     </header>
   );
