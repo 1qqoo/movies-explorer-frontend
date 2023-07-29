@@ -12,6 +12,7 @@
 
 .checkbox {
   display: inline-block;
+  cursor: pointer;
 }
 
 .checkbox__input {
@@ -29,7 +30,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
-  padding-left: 41px;
+  padding-left: 38px;
   padding-right: 54px;
 }
 
@@ -50,7 +51,7 @@
   display: block;
   content: '';
   position: absolute;
-  left: 180px;
+  left: 178px;
   top: 5px;
   width: 10px;
   height: 10px;
@@ -64,6 +65,6 @@
 }
 
 .checkbox__input:checked + .checkbox__inner::after {
-  left: 198px;
+  left: 194px;
   background-color: rgba(255, 255, 255, 1);
 }

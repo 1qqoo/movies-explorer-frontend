@@ -9,7 +9,7 @@
 }
 
 .search__form {
-  max-width: 932px;
+  max-width: 940px;
   width: 100%;
   position: relative;
   border: #424242 1px solid;
@@ -17,16 +17,17 @@
 }
 
 .search__input {
-  max-width: 932px;
+  max-width: 940px;
   width: 100%;
   background-color: transparent;
   border: none;
   color: #fff;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 1.21;
   box-sizing: border-box;
   padding: 15px 22px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
 }
 
 .search__input::placeholder {
@@ -54,8 +55,8 @@
   width: 34px;
   height: 34px;
   position: absolute;
-  top: -4px;
-  right: 12px;
+  top: -10px;
+  right: 5px;
   border-radius: 50%;
   transform: translateY(50%);
   transition: all 0.3s ease;
