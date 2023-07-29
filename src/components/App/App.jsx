@@ -14,7 +14,7 @@ const App = () => {
         loggedIn={loggedIn}
         isBurgerOpened={isBurgerOpened}
       />
-      <Main />
+      {/* <Main /> */}
       <Movies />
       <Footer />
     </div>
