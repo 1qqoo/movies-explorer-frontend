@@ -1,7 +1,7 @@
 .search-container {
   max-width: 1280px;
   width: 100%;
-  padding: 80px 70px 83px;
+  padding: 80px 70px 11px;
   margin: 0 auto;
   display: flex;
   box-sizing: border-box;
@@ -25,7 +25,7 @@
   border: none;
   color: #fff;
   box-sizing: border-box;
-  padding: 15px 22px;
+  padding: 14px 22px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -52,7 +52,7 @@
   background-image: url('../../image/icon-poisk.svg');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 34px 34px;
+  background-size: 22px 22px;
   box-sizing: border-box;
   width: 34px;
   height: 34px;
@@ -70,8 +70,22 @@
 }
 
 @media screen and (max-width: 800px) {
-  .search {
-    padding: 73px 30px 61px;
+  .search-container {
+    flex-direction: column;
+    padding: 60px 30px 57px;
+  }
+
+  .search__input {
+    padding: 14px 18px;
+  }
+
+  .search__button {
+    top: -11px;
+    right: 7px;
+  }
+
+  .search__form {
+    margin-bottom: 37px;
   }
 }
 
