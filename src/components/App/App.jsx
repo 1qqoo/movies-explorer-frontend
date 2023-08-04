@@ -26,7 +26,11 @@ const App = () => {
     navigate('/movies', { replace: true });
   };
 
-  // const loggedIn = true;
+  const register = (evt) => {
+    evt.preventDefault();
+    navigate('/signin', { replace: true });
+  };
+
   const isBurgerOpened = false;
 
   const path = useLocation().pathname;
@@ -41,7 +45,8 @@ const App = () => {
     <div className="app">
       {headerPaths.includes(path) && (
         <Header
-          loggedIn={isLoggedIn}
+          logIn={logIn}
+          isLoggedIn={isLoggedIn}
           isBurgerOpened={isBurgerOpened}
         />
       )}
@@ -73,7 +78,7 @@ const App = () => {
         ></Route>
         <Route
           path="/signup"
-          element={<Register logIn={logIn} />}
+          element={<Register register={register} />}
         ></Route>
         <Route
           path="*"

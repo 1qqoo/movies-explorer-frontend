@@ -4,13 +4,13 @@ import { useEffect } from 'react';
 import useFormWithValidation from '../../components/hooks/useFormWithValidation';
 import logo from '../../image/logo.svg';
 
-const Register = ({ logIn }) => {
+const Register = ({ register }) => {
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    logIn(values);
+    register(values);
   }
 
   useEffect(() => {
@@ -97,7 +97,7 @@ const Register = ({ logIn }) => {
           <Link
             to="/signin"
             className="register__link"
-            onClick={logIn}
+            onClick={register}
           >
             Войти
           </Link>

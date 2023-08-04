@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Link, useLocation } from 'react-router-dom';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, logIn }) => {
   const location = useLocation();
   const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
 
@@ -27,7 +27,14 @@ const Header = ({ isLoggedIn }) => {
           />
         </Link>
 
-        {isMobile ? <BurgerMenu /> : <Navigation loggedIn={isLoggedIn} />}
+        {isMobile ? (
+          <BurgerMenu />
+        ) : (
+          <Navigation
+            isLoggedIn={isLoggedIn}
+            logIn={logIn}
+          />
+        )}
       </div>
     </header>
   );

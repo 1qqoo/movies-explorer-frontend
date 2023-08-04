@@ -2,7 +2,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 import './Navigation.css';
 
-const Navigation = ({ isLoggedIn }) => {
+const Navigation = ({ isLoggedIn, logIn }) => {
   return (
     <>
       {!isLoggedIn ? (
@@ -16,6 +16,7 @@ const Navigation = ({ isLoggedIn }) => {
           <Link
             to="/signin"
             className="navigation__link navigation__link_type_active"
+            onClick={logIn}
           >
             Войти
           </Link>
