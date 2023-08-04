@@ -2,10 +2,10 @@ import { NavLink, Link } from 'react-router-dom';
 
 import './Navigation.css';
 
-const Navigation = (loggedIn) => {
+const Navigation = ({ isLoggedIn }) => {
   return (
     <>
-      {loggedIn ? (
+      {!isLoggedIn ? (
         <nav className="navigation">
           <Link
             to="/signup"

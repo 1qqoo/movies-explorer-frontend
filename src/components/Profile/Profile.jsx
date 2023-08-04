@@ -1,7 +1,7 @@
 import './Profile.css';
 import useFormWithValidation from '../../components/hooks/useFormWithValidation';
 
-export default function Profile({ handleSignOut, handleProfile }) {
+export default function Profile({ logOut }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation();
 
   return (
@@ -58,6 +58,7 @@ export default function Profile({ handleSignOut, handleProfile }) {
           <button
             type="submit"
             className="profile__button-exit"
+            onClick={logOut}
           >
             Выйти из аккаунта
           </button>

@@ -9,11 +9,24 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import './App.css';
 import NotFound from '../NotFound/NotFound';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const App = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const loggedIn = true;
+  const logOut = () => {
+    setIsLoggedIn(false);
+    navigate('/signin', { replace: true });
+  };
+
+  const logIn = (evt) => {
+    evt.preventDefault();
+    setIsLoggedIn(true);
+    navigate('/movies', { replace: true });
+  };
+
+  // const loggedIn = true;
   const isBurgerOpened = false;
 
   const path = useLocation().pathname;
@@ -28,7 +41,7 @@ const App = () => {
     <div className="app">
       {headerPaths.includes(path) && (
         <Header
-          loggedIn={loggedIn}
+          loggedIn={isLoggedIn}
           isBurgerOpened={isBurgerOpened}
         />
       )}
@@ -39,23 +52,28 @@ const App = () => {
         ></Route>
         <Route
           path="/movies"
-          element={<Movies />}
+          element={<Movies isLoggedIn={isLoggedIn} />}
         ></Route>
         <Route
           path="/saved-movies"
-          element={<SavedMovies />}
+          element={<SavedMovies isLoggedIn={isLoggedIn} />}
         ></Route>
         <Route
           path="/profile"
-          element={<Profile />}
+          element={
+            <Profile
+              isLoggedIn={isLoggedIn}
+              onClick={logOut}
+            />
+          }
         ></Route>
         <Route
           path="/signin"
-          element={<Login />}
+          element={<Login logIn={logIn} />}
         ></Route>
         <Route
           path="/signup"
-          element={<Register />}
+          element={<Register logIn={logIn} />}
         ></Route>
         <Route
           path="*"

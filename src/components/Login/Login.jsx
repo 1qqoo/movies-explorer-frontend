@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import logo from '../../image/logo.svg';
 import useFormWithValidation from '../../components/hooks/useFormWithValidation';
 
-const Login = ({ handleLogin }) => {
+const Login = ({ logIn }) => {
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleLogin(values);
+    logIn(values);
   }
 
   useEffect(() => {
@@ -68,6 +68,7 @@ const Login = ({ handleLogin }) => {
           type="submit"
           className={`login__button ${!isValid && 'login__button_disabled'}`}
           disabled={!isValid}
+          onClick={logIn}
         >
           Войти
         </button>
