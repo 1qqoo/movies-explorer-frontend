@@ -4,9 +4,9 @@
   margin: 74px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  height: calc(100vh - 74px);
 }
 
 .profile__form {
@@ -32,7 +32,6 @@
   flex-direction: column;
   width: 100%;
   gap: 3px;
-  flex: 1;
 }
 
 .profile__label {
@@ -146,7 +145,6 @@
 
 @media screen and (max-width: 800px) {
   .profile {
-    justify-content: center;
     margin: 236px;
   }
 
@@ -154,12 +152,17 @@
     min-height: 445px;
     gap: 80px;
   }
+
+  .profile__button-container {
+    margin-top: 113px;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .profile {
-    margin: 68px;
+    margin-top: 68px;
     justify-content: flex-start;
+    height: 100vh;
   }
 
   .profile__form {
@@ -167,6 +170,10 @@
     min-height: 500px;
     flex: 1;
     gap: 65px;
+  }
+
+  .profile__button-container {
+    margin-top: 0;
   }
 
   .profile__button-edit {

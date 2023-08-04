@@ -2,10 +2,10 @@ import { NavLink, Link } from 'react-router-dom';
 
 import './Navigation.css';
 
-const Navigation = ({ loggedIn }) => {
+const Navigation = (loggedIn) => {
   return (
     <>
-      {!loggedIn ? (
+      {loggedIn ? (
         <nav className="navigation">
           <Link
             to="/signup"
@@ -23,13 +23,13 @@ const Navigation = ({ loggedIn }) => {
       ) : (
         <nav className="navigation">
           <NavLink
-            to="/main"
+            to="/movies"
             className="navigation__link navigation__link_type_film"
           >
             Фильмы
           </NavLink>
           <NavLink
-            to="/main"
+            to="/saved-movies"
             className="navigation__link navigation__link_type_save-film"
           >
             Сохранённые фильмы

@@ -195,4 +195,7 @@
   .burger-btn::after {
     width: 22px;
   }
+  .burger-navigation_type_active {
+    width: 100%;
+  }
 }

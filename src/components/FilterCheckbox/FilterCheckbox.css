@@ -93,4 +93,12 @@
     line-height: 18px;
     padding-right: 48px;
   }
+
+  .checkbox__inner:after {
+    left: 118px;
+  }
+
+  .checkbox__input:checked + .checkbox__inner::after {
+    left: 132px;
+  }
 }

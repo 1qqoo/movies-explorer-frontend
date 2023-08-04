@@ -95,7 +95,7 @@ const Register = ({ handleRegister }) => {
         <span className="register__support">
           Уже зарегистрированы?&nbsp;
           <Link
-            to="signin"
+            to="/signin"
             className="register__link"
           >
             Войти

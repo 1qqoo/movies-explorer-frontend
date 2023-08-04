@@ -35,19 +35,19 @@ const BurgerMenu = () => {
         <>
           <div className="burger-menu__links">
             <NavLink
-              to="/main"
+              to="/"
               className="burger-menu__link"
             >
               Главная
             </NavLink>
             <NavLink
-              to="/main"
+              to="/movies"
               className="burger-menu__link"
             >
               Фильмы
             </NavLink>
             <NavLink
-              to="/main"
+              to="/saved-movies"
               className="burger-menu__link"
             >
               Сохранённые фильмы

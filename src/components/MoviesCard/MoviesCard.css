@@ -4,6 +4,7 @@
   border-radius: 10px;
   background-color: #222;
   width: inherit;
+  position: relative;
 }
 
 .movies-card__item {
@@ -53,13 +54,14 @@
 }
 
 .movies-card__button {
+  position: absolute;
+  bottom: 21px;
+  right: -2px;
   border: none;
   background-color: transparent;
   background-repeat: no-repeat;
   width: 30px;
   height: 30px;
-  background-position: 50% 50%;
-  transition: all 0.3s ease;
   padding: 0;
   cursor: pointer;
 }
@@ -69,8 +71,7 @@
 }
 
 .movies-card__button_type_unsave {
-  background-image: url('../../image/btn-close.svg');
-  opacity: 0;
+  background-image: url('../../image/d8.svg');
 }
 
 .movies-card__label {
