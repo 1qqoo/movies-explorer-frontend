@@ -180,3 +180,19 @@
     width: 28px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .burger-btn {
+    margin: 9px 3px 0 0;
+    width: 34px;
+    height: 21px;
+  }
+
+  .burger-btn::before {
+    width: 22px;
+  }
+
+  .burger-btn::after {
+    width: 22px;
+  }
+}

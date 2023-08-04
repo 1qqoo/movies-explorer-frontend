@@ -21,6 +21,7 @@ const Header = (loggedIn) => {
           className="header__link"
         >
           <img
+            className="header__logo"
             src={Logo}
             alt="Логотип"
           />

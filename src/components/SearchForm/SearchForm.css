@@ -90,19 +90,25 @@
 }
 
 @media screen and (max-width: 400px) {
-  .search {
-    padding: 85px 14px 50px;
+  .search-container {
+    padding: 60px 12px 42px;
   }
 
   .search__input {
-    text-align: left;
-    font-size: 18px;
-    line-height: 1.22;
-    padding-left: 0;
+    padding: 14px 14px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
   }
 
   .search__button {
-    top: -10px;
+    top: -11px;
+    right: 5px;
+  }
+
+  .search__form {
+    margin-bottom: 43px;
   }
 
   .search__form::before {

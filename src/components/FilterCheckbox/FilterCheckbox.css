@@ -84,3 +84,13 @@
     background-color: rgba(255, 255, 255, 1);
   }
 }
+
+@media screen and (max-width: 400px) {
+  .checkbox__inner {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    padding-right: 48px;
+  }
+}
