@@ -93,6 +93,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  margin-top: 96px;
 }
 
 .profile__button-edit {
@@ -145,7 +146,7 @@
 
 @media screen and (max-width: 800px) {
   .profile {
-    margin: 236px;
+    margin: 236px auto;
   }
 
   .profile__form {

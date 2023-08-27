@@ -40,9 +40,7 @@
 }
 
 .techs__spisok {
-  display: grid;
-  grid-template-columns: repeat(7, 90px);
-  list-style-type: none;
+  display: flex;
   gap: 10px;
   margin: 0;
   padding: 100px 10px;
@@ -90,14 +88,6 @@
     line-height: 18px;
     letter-spacing: -0.48px;
   }
-  .techs__spisok {
-    display: grid;
-    grid-template-columns: repeat(7, 12%);
-    list-style-type: none;
-    gap: 10px;
-    margin: 0;
-    padding: 83px 10px 90px;
-  }
 
   .techs__spisok-link {
     font-size: 12px;
@@ -133,5 +123,11 @@
     justify-content: center;
     grid-template-columns: 48% 48%;
     padding: 50px 10px 90px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .techs__container {
+    padding: 0 18px;
   }
 }

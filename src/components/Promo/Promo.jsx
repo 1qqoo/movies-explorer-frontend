@@ -18,8 +18,7 @@ const Promo = () => {
             Листайте ниже, чтобы узнать больше про этот проект и его создателя.
           </p>
           <a
-            href="/"
-            target="_blank"
+            href="#about-project"
             rel="noopener noreferrer"
             className="promo__learn-more-link"
           >

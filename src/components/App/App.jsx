@@ -17,7 +17,7 @@ const App = () => {
 
   const logOut = () => {
     setIsLoggedIn(false);
-    navigate('/signin', { replace: true });
+    navigate('/', { replace: true });
   };
 
   const logIn = (evt) => {
