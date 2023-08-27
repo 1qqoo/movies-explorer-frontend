@@ -1,5 +1,5 @@
 import './Header.css';
-import Logo from '../../image/logo.svg';
+import Logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 import { useMediaQuery } from 'react-responsive';
 import { Link, useLocation } from 'react-router-dom';

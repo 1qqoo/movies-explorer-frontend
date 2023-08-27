@@ -2,7 +2,7 @@ import './Register.css';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import useFormWithValidation from '../../components/hooks/useFormWithValidation';
-import logo from '../../image/logo.svg';
+import logo from '../../images/logo.svg';
 
 const Register = ({ register }) => {
   const { values, handleChange, resetForm, errors, isValid } =

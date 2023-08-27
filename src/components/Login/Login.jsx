@@ -1,7 +1,7 @@
 import './Login.css';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../image/logo.svg';
+import logo from '../../images/logo.svg';
 import useFormWithValidation from '../../components/hooks/useFormWithValidation';
 
 const Login = ({ logIn }) => {
