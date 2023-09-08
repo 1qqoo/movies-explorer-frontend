@@ -7,7 +7,7 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-  font-family: 'Inter', SuisseIntl, sans-serif;
+  font-family: 'Inter', 'SuisseIntl', sans-serif;
   color: #fff;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -moz-osx-font-smoothing: grayscale;
