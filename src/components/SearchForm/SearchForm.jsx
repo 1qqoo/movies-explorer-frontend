@@ -5,7 +5,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 const SearchForm = () => {
   const { values, handleChange } = useFormWithValidation();
   return (
-    <section className="search-container">
+    <section className="search">
       <form
         className="search__form"
         name="search"
@@ -26,8 +26,8 @@ const SearchForm = () => {
           className="search__button"
           type="submit"
         ></button>
+        <FilterCheckbox />
       </form>
-      <FilterCheckbox />
     </section>
   );
 };
