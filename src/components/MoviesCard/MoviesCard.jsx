@@ -21,7 +21,7 @@ const MoviesCard = (props) => {
           </a>
         </article>
         <div className="movies-card__description">
-          <h3 className="movies-card__title">{props.name}</h3>
+          <h2 className="movies-card__title">{props.name}</h2>
           {path === '/movies' ? (
             <label className="movies-card__label">
               <input

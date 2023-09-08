@@ -18,7 +18,7 @@ const Login = ({ logIn }) => {
   }, [resetForm]);
 
   return (
-    <main className="login">
+    <section className="login">
       <form
         className="login__form"
         name="login"
@@ -82,7 +82,7 @@ const Login = ({ logIn }) => {
           </Link>
         </span>
       </form>
-    </main>
+    </section>
   );
 };
 

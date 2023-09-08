@@ -41,6 +41,7 @@
 .footer__links {
   display: flex;
   gap: 20px;
+  list-style: none;
 }
 
 .footer__link {
@@ -50,6 +51,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-decoration: none;
 }
 
 .footer__link:hover {

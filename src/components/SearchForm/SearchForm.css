@@ -1,4 +1,4 @@
-.search-container {
+.search {
   max-width: 1280px;
   width: 100%;
   padding: 80px 70px 11px;
@@ -16,6 +16,7 @@
   position: relative;
   border: #424242 1px solid;
   border-radius: 50px;
+  position: relative;
 }
 
 .search__input {

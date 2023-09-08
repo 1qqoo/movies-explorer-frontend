@@ -18,7 +18,7 @@ const Register = ({ register }) => {
   }, [resetForm]);
 
   return (
-    <main className="register">
+    <section className="register">
       <form
         className="register__form"
         name="register"
@@ -103,7 +103,7 @@ const Register = ({ register }) => {
           </Link>
         </span>
       </form>
-    </main>
+    </section>
   );
 };
 

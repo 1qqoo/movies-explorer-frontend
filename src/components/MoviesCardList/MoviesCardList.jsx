@@ -16,7 +16,12 @@ const MoviesCardList = () => {
           );
         })}
       </ul>
-      <button className="movies-cards__add-button">Ещё</button>
+      <button
+        type="button"
+        className="movies-cards__add-button"
+      >
+        Ещё
+      </button>
     </section>
   );
 };

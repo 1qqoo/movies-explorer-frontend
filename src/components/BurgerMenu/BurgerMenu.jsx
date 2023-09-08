@@ -17,6 +17,7 @@ const BurgerMenu = () => {
     >
       <div className="burger-btn__container">
         <button
+          type="button"
           onClick={handleOpenBurger}
           className={`${
             !isActiveBurger ? 'burger-btn' : 'burger-btn burger-btn_type_active'
