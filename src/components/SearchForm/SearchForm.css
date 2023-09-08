@@ -70,7 +70,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .search-container {
+  .search {
     flex-direction: column;
     padding: 60px 30px 57px;
   }
@@ -90,7 +90,7 @@
 }
 
 @media screen and (max-width: 400px) {
-  .search-container {
+  .search {
     padding: 60px 12px 42px;
   }
 

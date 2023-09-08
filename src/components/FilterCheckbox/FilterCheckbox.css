@@ -1,10 +1,10 @@
 .checkbox {
   display: inline-block;
   cursor: pointer;
+  position: relative;
 }
 
 .checkbox__input {
-  position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
@@ -46,6 +46,10 @@
   border-radius: 50%;
   background-color: rgba(245, 245, 245, 1);
   transition: background-color 0.3s, left 0.3s;
+}
+
+.checkbox__inner:hover {
+  opacity: 0.7;
 }
 
 .checkbox__input:checked + .checkbox__inner::before {

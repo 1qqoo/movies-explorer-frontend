@@ -96,6 +96,10 @@
   bottom: -9px;
 }
 
+.movies-card__checkbox:hover {
+  opacity: 0.7;
+}
+
 .movies-card__input:checked + .movies-card__checkbox::before {
   content: '';
   width: 14px;
