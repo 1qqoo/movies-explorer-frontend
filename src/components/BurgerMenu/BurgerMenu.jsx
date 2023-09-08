@@ -34,26 +34,32 @@ const BurgerMenu = () => {
       </div>
       {isActiveBurger ? (
         <>
-          <div className="burger-menu__links">
-            <NavLink
-              to="/"
-              className="burger-menu__link"
-            >
-              Главная
-            </NavLink>
-            <NavLink
-              to="/movies"
-              className="burger-menu__link"
-            >
-              Фильмы
-            </NavLink>
-            <NavLink
-              to="/saved-movies"
-              className="burger-menu__link"
-            >
-              Сохранённые фильмы
-            </NavLink>
-          </div>
+          <ul className="burger-menu__links">
+            <li>
+              <NavLink
+                to="/"
+                className="burger-menu__link"
+              >
+                Главная
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/movies"
+                className="burger-menu__link"
+              >
+                Фильмы
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/saved-movies"
+                className="burger-menu__link"
+              >
+                Сохранённые фильмы
+              </NavLink>
+            </li>
+          </ul>
           <div className="burger-menu__links burger-menu__links_type_account">
             <NavLink
               to="/profile"
