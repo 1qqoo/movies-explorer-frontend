@@ -26,8 +26,8 @@ const SearchForm = () => {
           className="search__button"
           type="submit"
         ></button>
-        <FilterCheckbox />
       </form>
+      <FilterCheckbox />
     </section>
   );
 };
