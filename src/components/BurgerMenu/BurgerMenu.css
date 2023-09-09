@@ -76,11 +76,11 @@
   transform: rotate(45deg) translate(0, 70%);
 }
 
-.burger-navigation {
+.burger__container {
   background: none;
 }
 
-.burger-navigation_type_active {
+.burger__container_type_active {
   background: rgba(32, 32, 32, 1);
   box-sizing: border-box;
   display: flex;
@@ -187,7 +187,7 @@
     width: 28px;
   }
 
-  .burger-navigation_type_active::after {
+  .burger_type_active::after {
     content: '';
     position: fixed;
     top: 0;
@@ -195,7 +195,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
+    z-index: 1;
   }
 }
 
