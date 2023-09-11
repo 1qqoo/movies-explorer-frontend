@@ -103,7 +103,7 @@
 }
 
 .register__button {
-  margin-top: auto;
+  margin-top: 52px;
   border-style: none;
   background-color: #4285f4;
   border-radius: 3px;
@@ -133,6 +133,7 @@
 }
 
 .register__support {
+  margin: 18px 0 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.21;
@@ -142,7 +143,7 @@
 
 @media screen and (max-width: 500px) {
   .register {
-    padding-top: 56px;
+    padding-top: 52px;
   }
 
   .register__form {
@@ -163,14 +164,21 @@
   }
 
   .register__support {
-    position: absolute;
     font-size: 12px;
     line-height: 1.25;
-    bottom: -29px;
-    left: 36px;
   }
 
   .register__link {
     padding-left: 4px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .register__link {
+    padding-left: 0;
+  }
+
+  .register__support {
+    margin: 14px 0 0;
   }
 }

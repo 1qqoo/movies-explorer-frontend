@@ -16,6 +16,7 @@
 }
 
 .not-found__error {
+  margin: 0;
   font-weight: 400;
   font-size: 140px;
   line-height: 1.21;
@@ -28,6 +29,7 @@
 }
 
 .not-found__button {
+  margin-top: 186px;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -36,11 +38,7 @@
   line-height: 1.21;
   color: #4285f4;
   padding: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   bottom: 60px;
-  transition: all 0.3s ease;
 }
 
 .not-found__button:hover {

@@ -92,17 +92,17 @@ const Register = ({ register }) => {
         >
           Зарегистрироваться
         </button>
-        <span className="register__support">
-          Уже зарегистрированы?&nbsp;
-          <Link
-            to="/signin"
-            className="register__link"
-            onClick={register}
-          >
-            Войти
-          </Link>
-        </span>
       </form>
+      <span className="register__support">
+        Уже зарегистрированы?&nbsp;
+        <Link
+          to="/signin"
+          className="register__link"
+          onClick={register}
+        >
+          Войти
+        </Link>
+      </span>
     </section>
   );
 };

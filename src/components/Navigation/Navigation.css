@@ -1,6 +1,6 @@
 .navigation {
   display: flex;
-  gap: 17px;
+  gap: 31px;
   justify-content: space-between;
   align-items: center;
 }
