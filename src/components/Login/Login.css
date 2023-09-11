@@ -85,6 +85,13 @@
   border-radius: 8px;
 }
 
+.login__input:focus {
+  outline: 1px solid #3ddc84;
+}
+.login__input_error:focus {
+  outline: 1px solid #ee3465;
+}
+
 .login__input_error {
   color: rgba(238, 52, 101, 1);
 }

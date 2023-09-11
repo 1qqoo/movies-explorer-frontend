@@ -63,12 +63,23 @@
   text-align: right;
 }
 
-.profile__input_error {
-  color: #ee3465;
-}
-
 .profile__input[type='email'] {
   border: none;
+}
+
+.profile__input:focus {
+  outline: none;
+  border-bottom: 1px solid #3ddc84;
+  border-radius: 5px;
+}
+
+.profile__input_error:focus {
+  border-bottom: 1px solid #ee3465;
+  border-radius: 5px;
+}
+
+.profile__input_error {
+  color: #ee3465;
 }
 
 .profile__error {

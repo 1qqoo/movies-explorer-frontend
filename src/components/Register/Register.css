@@ -19,6 +19,13 @@
   position: relative;
 }
 
+.register__input:focus {
+  outline: 1px solid #3ddc84;
+}
+.register__input_error:focus {
+  outline: 1px solid rgba(238, 52, 101, 1);
+}
+
 .register__link {
   transition: all 0.3s ease;
   color: #4285f4;
