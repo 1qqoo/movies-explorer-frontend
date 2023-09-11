@@ -1,8 +1,12 @@
 import { NavLink, Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 import './Navigation.css';
 
 const Navigation = ({ isLoggedIn, logIn }) => {
+  const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
+
   return (
     <>
       {!isLoggedIn ? (
@@ -21,6 +25,8 @@ const Navigation = ({ isLoggedIn, logIn }) => {
             Войти
           </Link>
         </nav>
+      ) : isMobile ? (
+        <BurgerMenu />
       ) : (
         <nav className="navigation">
           <NavLink
