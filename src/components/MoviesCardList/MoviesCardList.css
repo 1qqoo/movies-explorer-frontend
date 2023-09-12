@@ -45,7 +45,7 @@
 
 @media screen and (max-width: 997px) {
   .movies-cards {
-    padding: 0 30px 159px;
+    padding: 72px 30px 159px;
   }
 
   .movies-cards__list {
@@ -64,6 +64,16 @@
 @media screen and (max-width: 917px) {
   .movies-cards__list {
     grid-auto-rows: 262px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .movies-cards__list {
+    grid-auto-rows: 262px;
+  }
+
+  .movies-cards {
+    padding: 37px 30px 159px;
   }
 }
 

@@ -14,7 +14,10 @@ export default function Profile({ onClick, isLoggedIn }) {
         >
           <h1 className="profile__title">Привет, Виталий!</h1>
           <div className="profile__labels-container">
-            <label className="profile__label">
+            <label
+              className="profile__label"
+              type="name"
+            >
               <span className="profile__label-text">Имя</span>
               <input
                 name="name"
@@ -29,9 +32,12 @@ export default function Profile({ onClick, isLoggedIn }) {
                 maxLength="30"
                 pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
               />
-              <span className="profile__error-name">{errors.name || ''}</span>
             </label>
-            <label className="profile__label">
+            <span className="profile__error-name">{errors.name || ''}</span>
+            <label
+              className="profile__label"
+              type="email"
+            >
               <span className="profile__label-text">E-mail</span>
               <input
                 name="email"
@@ -43,8 +49,8 @@ export default function Profile({ onClick, isLoggedIn }) {
                 type="email"
                 required
               />
-              <span className="profile__error">{errors.email || ''}</span>
             </label>
+            <span className="profile__error">{errors.email || ''}</span>
           </div>
           <div className="profile__button-container">
             <button
