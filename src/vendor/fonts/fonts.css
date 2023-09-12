@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./Inter/Inter-Regular.woff) format('woff'),
+    url(./Inter/Inter-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./Inter/Inter-Medium.woff) format('woff'),
+    url(./Inter/Inter-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'SuisseIntl';
+  font-style: normal;
+  font-display: swap;
+  src: url(./SuisseIntl/SuisseIntl-Regular.woff) format('woff'),
+    url(./SuisseIntl/SuisseIntl-Regular.woff2) format('woff2');
+}

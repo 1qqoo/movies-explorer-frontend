@@ -1,0 +1,150 @@
+.about-me {
+  width: 100%;
+  font-family: 'Inter', 'SuisseIntl', sans-serif;
+}
+
+.about-me__container {
+  max-width: 1280px;
+  min-width: 320px;
+  padding: 112px 70px 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.about-me__bio {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 100px;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+
+.about-me__bio-info {
+  max-width: 590px;
+  width: 100%;
+}
+
+.about-me__name {
+  margin: 67px 0 0;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+}
+
+.about-me__age {
+  margin: 18px 0 26px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.about-me__text {
+  margin: 0 0 98px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.about-me__social-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.about-me__social-link:hover {
+  opacity: 0.7;
+}
+
+.about-me__image {
+  margin: 66px 0 0;
+  width: 270px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .about-me__container {
+    padding: 91px 50px 0;
+  }
+
+  .about-me__bio {
+    margin: 0 0 92px;
+    justify-content: center;
+  }
+
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: -1.6px;
+  }
+
+  .about-me__age {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 16px 0 20px;
+  }
+
+  .about-me__text {
+    max-width: 360px;
+    margin: 0 0 86px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__image {
+    margin: 66px 0 0;
+    width: 255px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .about-me__image {
+    margin: 57px 0 0;
+    width: 160px;
+    min-height: 0;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .about-me__container {
+    padding: 51px 15px 0;
+  }
+
+  .about-me__bio {
+    flex-direction: column;
+    margin: 0 0 70px;
+    align-items: center;
+  }
+
+  .about-me__image {
+    margin: 57px 0 0;
+    width: 292px;
+    min-height: 352px;
+  }
+
+  .about-me__name {
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+    margin: 28px 0 0;
+  }
+
+  .about-me__age {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 20px 0 20px;
+  }
+
+  .about-me__text {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 39px;
+  }
+}

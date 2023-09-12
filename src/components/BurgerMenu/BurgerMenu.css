@@ -1,0 +1,236 @@
+.burger__button {
+  margin: 8px 2px 0 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 50;
+  width: 22px;
+  height: 23px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  z-index: 50;
+}
+.burger__button:hover {
+  opacity: 0.7;
+}
+
+.burger__button::before {
+  content: '';
+  position: absolute;
+  width: 28px;
+  background-color: rgba(255, 255, 255, 1);
+  height: 3px;
+  transition: all 0.3s ease 0s;
+}
+
+.burger__button::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  background-color: rgba(255, 255, 255, 1);
+  height: 3px;
+  transition: all 0.3s ease 0s;
+}
+
+.burger__button::before {
+  width: 22px;
+  top: 0;
+}
+
+.burger__button::after {
+  width: 22px;
+  bottom: 0;
+}
+
+.burger__container {
+  max-width: 462px;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.burger__span {
+  width: 100%;
+  height: 3px;
+  transform: scale(1);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.burger__span_type_active {
+  transform: scale(0);
+}
+
+.burger__button_type_active {
+  width: 22px;
+  height: 23px;
+}
+
+.burger__button_type_active::before {
+  top: 50%;
+  transform: rotate(-45deg) translate(0, -70%);
+}
+
+.burger__button_type_active::after {
+  bottom: 50%;
+  transform: rotate(45deg) translate(0, 70%);
+}
+
+.burger__navigation {
+  background: none;
+}
+
+.burger__navigation_type_active {
+  background: rgba(32, 32, 32, 1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-items: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 18px 27.16px 92px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 68%;
+  z-index: 50;
+}
+
+.burger__links {
+  padding: 112px 0 620px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  grid-row: 2;
+  list-style: none;
+  margin: 0;
+  row-gap: 28px;
+}
+
+.burger__links_type_account {
+  padding: 0;
+  flex-direction: row;
+  grid-row: none;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 40px;
+}
+
+.burger__link {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+}
+
+.burger__link:hover {
+  opacity: 0.7;
+}
+
+.burger__link_type_account {
+  padding: 11px;
+  font-size: 13px;
+  line-height: 12px;
+}
+
+.burger__link-icon {
+  background-color: rgba(49, 49, 49, 1);
+  background-image: url('../../images/icon-main.svg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 11.38px 11.67px;
+  border-radius: 50px;
+  height: 26px;
+  width: 26px;
+}
+
+@media screen and (max-width: 800px) {
+  .burger__button {
+    margin: 8px 2px 0 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 50;
+    width: 40px;
+    height: 23px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    z-index: 50;
+  }
+
+  .burger__button::before {
+    content: '';
+    position: absolute;
+    width: 28px;
+    background-color: rgba(255, 255, 255, 1);
+    height: 3px;
+    transition: all 0.3s ease 0s;
+  }
+
+  .burger__button::after {
+    content: '';
+    position: absolute;
+    width: 28px;
+    background-color: rgba(255, 255, 255, 1);
+    height: 3px;
+    transition: all 0.3s ease 0s;
+  }
+
+  .burger__button::before {
+    width: 28px;
+  }
+
+  .burger__button::after {
+    width: 28px;
+  }
+
+  .burger_type_active::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .burger__button {
+    margin: 8px 3px 0 0;
+    width: 34px;
+    height: 21px;
+  }
+
+  .burger__button_type_active {
+    margin: 0 -16px 0 0;
+  }
+
+  .burger__button::before {
+    width: 22px;
+  }
+
+  .burger__button::after {
+    width: 22px;
+  }
+  .burger__navigation {
+    width: 100%;
+  }
+
+  .burger__link_type_account {
+    padding: 0 9px 0;
+  }
+
+  .burger__links {
+    padding: 106px 0 446px;
+    row-gap: 25px;
+  }
+
+  .burger__links_type_account {
+    padding: 0;
+  }
+}

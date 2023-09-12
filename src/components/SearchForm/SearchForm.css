@@ -1,0 +1,145 @@
+.search {
+  max-width: 1280px;
+  width: 100%;
+  padding: 80px 70px 11px;
+  margin: 0 auto;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.search__form {
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  width: 100%;
+  border-radius: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search__container {
+  max-width: 940px;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  border: 1px solid rgba(170, 170, 170, 0.2);
+  border-radius: 40px;
+  padding: 0 6px 0 0;
+}
+
+.search__input {
+  margin-right: 6px;
+  max-width: 940px;
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  box-sizing: border-box;
+  padding: 14px 22px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.search__input:focus {
+  outline: 1px solid #3ddc84;
+  border-radius: 40px;
+}
+
+.search__input::placeholder {
+  color: #8b8b8b;
+}
+
+.search__error {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.2;
+  color: #ee3465;
+  position: absolute;
+  top: 70px;
+  left: 0;
+}
+
+.search__button {
+  border: none;
+  background-color: #4285f4;
+  background-image: url('../../images/icon-poisk.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  box-sizing: border-box;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.search__button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+  .search {
+    padding: 60px 30px 20px;
+  }
+  .search__container {
+    margin-bottom: 37px;
+  }
+
+  .search__form {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .search__input {
+    padding: 14px 18px;
+    margin-bottom: 0;
+  }
+
+  .search__button {
+    top: -11px;
+    right: 7px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .search {
+    padding: 60px 12px 42px;
+  }
+
+  .search__container {
+    margin-bottom: 41px;
+  }
+
+  .search__input {
+    padding: 14px 14px;
+    padding: 14px 18px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  .search__button {
+    top: -11px;
+    right: 5px;
+  }
+
+  .search__form {
+    margin-bottom: 3px;
+  }
+
+  .search__form::before {
+    content: none;
+  }
+
+  .search__error {
+    font-size: 10px;
+    top: 60px;
+  }
+}
