@@ -11,21 +11,23 @@ const SearchForm = () => {
         name="search"
         noValidate
       >
-        <input
-          className="search__input"
-          name="search"
-          type="text"
-          placeholder="Фильм"
-          autoComplete="off"
-          value={values.search || ''}
-          onChange={handleChange}
-          required
-        />
+        <div className="search__container">
+          <input
+            className="search__input"
+            name="search"
+            type="text"
+            placeholder="Фильм"
+            autoComplete="off"
+            value={values.search || ''}
+            onChange={handleChange}
+            required
+          />
+          <button
+            className="search__button"
+            type="submit"
+          ></button>
+        </div>
         <span className="search__error"></span>
-        <button
-          className="search__button"
-          type="submit"
-        ></button>
 
         <FilterCheckbox />
       </form>
