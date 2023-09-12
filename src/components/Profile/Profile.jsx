@@ -31,6 +31,7 @@ export default function Profile({ onClick, isLoggedIn }) {
                 minLength="2"
                 maxLength="30"
                 pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+                placeholder="Введите новое имя"
               />
             </label>
             <span className="profile__error-name">{errors.name || ''}</span>
@@ -48,6 +49,7 @@ export default function Profile({ onClick, isLoggedIn }) {
                 value={values.email || ''}
                 type="email"
                 required
+                placeholder="Введите новую почту"
               />
             </label>
             <span className="profile__error">{errors.email || ''}</span>

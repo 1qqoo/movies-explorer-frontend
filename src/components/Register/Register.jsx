@@ -52,6 +52,7 @@ const Register = ({ register }) => {
                 minLength="2"
                 maxLength="30"
                 pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+                placeholder="Введите имя"
               />
               <span className="register__error">{errors.name || ''}</span>
             </label>
@@ -66,6 +67,7 @@ const Register = ({ register }) => {
                 value={values.email || ''}
                 type="email"
                 required
+                placeholder="Введите почту"
               />
               <span className="register__error">{errors.email || ''}</span>
             </label>
@@ -80,6 +82,9 @@ const Register = ({ register }) => {
                 value={values.password || ''}
                 type="password"
                 required
+                minLength="6"
+                maxLength="30"
+                placeholder="Введите пароль"
               />
               <span className="register__error">{errors.password || ''}</span>
             </label>

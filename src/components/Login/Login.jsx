@@ -49,6 +49,7 @@ const Login = ({ logIn }) => {
                 value={values.email || ''}
                 type="email"
                 required
+                placeholder="Введите почту"
               />
               <span className="login__error">{errors.email || ''}</span>
             </label>
@@ -63,6 +64,9 @@ const Login = ({ logIn }) => {
                 value={values.password || ''}
                 type="password"
                 required
+                minLength="6"
+                maxLength="30"
+                placeholder="Введите пароль"
               />
               <span className="login__error">{errors.password || ''}</span>
             </label>
