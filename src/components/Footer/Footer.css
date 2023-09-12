@@ -1,6 +1,7 @@
 .footer {
   width: 100%;
   text-align: center;
+  font-family: 'Inter', 'SuisseIntl', sans-serif;
 }
 
 .footer__container {
@@ -78,7 +79,7 @@
 
   .footer__info {
     flex-direction: column-reverse;
-    padding: 29px 0 0;
+    padding: 25px 0 0;
   }
 
   .footer__info-data {
@@ -89,7 +90,7 @@
 
   .footer__links {
     flex-direction: column;
-    gap: 13px;
+    gap: 10px;
   }
 
   .footer__link {

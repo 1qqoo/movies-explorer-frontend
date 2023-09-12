@@ -5,6 +5,7 @@
   background-color: #222;
   width: inherit;
   position: relative;
+  font-family: 'Inter', 'SuisseIntl', sans-serif;
 }
 
 .movies-card__item {

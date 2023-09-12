@@ -5,7 +5,7 @@ const FilterCheckbox = () => {
     <>
       <label
         className="checkbox"
-        for="checkbox"
+        htmlFor="checkbox"
       >
         <input
           className="checkbox__input"

@@ -43,7 +43,7 @@
   display: flex;
   gap: 10px;
   margin: 0;
-  padding: 86px 10px;
+  padding: 100px 10px;
 }
 
 .techs__spisok-element {
@@ -75,6 +75,10 @@
 }
 
 @media screen and (max-width: 800px) {
+  .techs__spisok {
+    padding: 86px 10px;
+  }
+
   .techs__container {
     margin-top: 91px;
     padding: 0 50px;

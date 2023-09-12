@@ -6,6 +6,7 @@
   flex-direction: column;
   box-sizing: border-box;
   padding: 72px 70px 157px;
+  font-family: 'Inter', 'SuisseIntl', sans-serif;
 }
 
 .movies-cards__list {
@@ -32,7 +33,7 @@
   margin-top: 83px;
   transition: all 0.3s ease;
   cursor: pointer;
-  font-family: Inter;
+  font-family: 'Inter', 'SuisseIntl', sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;

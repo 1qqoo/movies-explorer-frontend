@@ -7,6 +7,7 @@
   align-items: center;
   box-sizing: border-box;
   height: calc(100vh - 74px);
+  font-family: 'Inter', 'SuisseIntl', sans-serif;
 }
 
 .profile__form {

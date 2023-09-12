@@ -1,6 +1,6 @@
 .navigation {
   display: flex;
-  gap: 17px;
+  gap: 31px;
   justify-content: space-between;
   align-items: center;
 }
@@ -76,6 +76,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
 @media screen and (max-width: 400px) {
   .navigation {
     display: flex;
