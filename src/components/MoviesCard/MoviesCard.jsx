@@ -1,8 +1,12 @@
 import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
 
-const MoviesCard = (props) => {
+const MoviesCard = ({ movie }) => {
   const path = useLocation().pathname;
+
+  const duration = `${Math.floor(movie.duration / 60)}ч ${
+    movie.duration % 60
+  }м`;
 
   return (
     <>
@@ -11,17 +15,17 @@ const MoviesCard = (props) => {
           <a
             target="_blank"
             rel="noreferrer"
-            href="/"
+            href={movie.trailerLink}
           >
             <img
-              src={props.image}
-              alt={props.name}
+              src={movie.image}
+              alt={`Отрывок из фильма ${movie.nameRU}`}
               className="movies-card__image"
             />
           </a>
         </article>
         <div className="movies-card__description">
-          <h2 className="movies-card__title">{props.name}</h2>
+          <h2 className="movies-card__title">{movie.nameRU}</h2>
           {path === '/movies' ? (
             <label className="movies-card__label">
               <input
@@ -39,7 +43,7 @@ const MoviesCard = (props) => {
             ></button>
           )}
         </div>
-        <span className="movies-card__duration">1ч42м</span>
+        <span className="movies-card__duration">{duration}</span>
       </li>
     </>
   );

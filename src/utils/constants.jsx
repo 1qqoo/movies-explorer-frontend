@@ -1,5 +1,3 @@
-const BASE_URL = 'https://api.movies.diploma.nomoredomains.work';
-const MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 const SHORTMOVIES_DURATION = 40;
 const DEVICE_PARAMS = {
   desktop: {
@@ -25,4 +23,4 @@ const DEVICE_PARAMS = {
   },
 };
 
-export { BASE_URL, MOVIES_URL, SHORTMOVIES_DURATION, DEVICE_PARAMS };
+export { SHORTMOVIES_DURATION, DEVICE_PARAMS };
