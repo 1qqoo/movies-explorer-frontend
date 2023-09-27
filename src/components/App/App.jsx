@@ -9,7 +9,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import './App.css';
 import NotFound from '../NotFound/NotFound';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProtectedRoutes from '../../utils/ProtectedRoutes';
 
 const App = () => {
@@ -20,6 +20,12 @@ const App = () => {
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    setToken(jwt);
+  }, [token]);
 
   const logOut = () => {
     setIsLoggedIn(false);

@@ -1,69 +1,55 @@
-export const BASE_URL = 'https://api.movies.diploma.nomoredomains.work';
+class MainApi {
+  #url;
+  #headers;
+  #authHeaders;
+  constructor({ url, headers }) {
+    this.#url = url;
+    this.#headers = headers;
+    this.#authHeaders = null;
+  }
 
-const headers = {
-  'Content-Type': 'application/json',
-  Authorization: '',
-};
+  deleteAuthHeaders = () => (this.#authHeaders = null);
 
-const getJson = (res) => {
-  return res.ok ? res.json() : Promise.reject(res.status);
-};
+  setAuthHeaders = (token) => {
+    this.#authHeaders = {
+      ...this.#headers,
+      authorization: `Bearer ${token}`,
+    };
+  };
 
-export const setToken = (token) => {
-  headers.Authorization = `Bearer ${token}`;
-};
+  #handleReply = (res) =>
+    res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 
-export const register = (name, email, password) => {
-  return fetch(`${BASE_URL}/signup`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ name, email, password }),
-  }).then(getJson);
-};
+  #makeRequest = (method, path, body, notSave) => {
+    const reqOptions = {
+      method: method,
+      headers: notSave ? this.#headers : this.#authHeaders,
+    };
+    if (body) reqOptions.body = JSON.stringify(body);
 
-export const authorize = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, password }),
-  }).then(getJson);
-};
+    return fetch(`${this.#url}${path}`, reqOptions).then(this.#handleReply);
+  };
 
-export const getUser = () => {
-  return fetch(`${BASE_URL}/users/me`, {
-    headers,
-  }).then(getJson);
-};
+  registerUser = (regData) =>
+    this.#makeRequest('POST', '/signup', regData, 'notSave');
 
-export const updateUser = (email, name) => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'PATCH',
-    headers,
-    body: JSON.stringify({ email, name }),
-  }).then(getJson);
-};
+  loginUser = (loginData) =>
+    this.#makeRequest('POST', '/signin', loginData, 'notSave');
 
-export const addMovie = (movie) => {
-  return fetch(`${BASE_URL}/movies`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(movie),
-  }).then(getJson);
-};
+  // addNewCard = (cardData) => this.#makeRequest('POST', '/cards', cardData);
 
-export const deleteMovie = (id) => {
-  return fetch(`${BASE_URL}/movies/${id}`, {
-    method: 'DELETE',
-    headers,
-  }).then(getJson);
-};
+  // deleteCard = (id) => this.#makeRequest('DELETE', `/cards/${id}`);
 
-export const getFilms = () => {
-  return fetch(`${BASE_URL}/movies`, {
-    headers,
-  }).then(getJson);
-};
+  // changeLikeCardStatus = (id, isLiked) => {
+  //   const fetchMethod = isLiked ? 'PUT' : 'DELETE';
+  //   return this.#makeRequest(fetchMethod, `/cards/${id}/likes`);
+  // };
+}
+
+const api = new MainApi({
+  url: 'https://api.movies.diploma.nomoredomains.work',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+export default api;
