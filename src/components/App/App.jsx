@@ -26,13 +26,15 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     if (isLoggedIn) {
-      Promise.all([api.getUserInfo()])
-        .then(([user]) => {
+      api
+        .getUserInfo()
+        .then((user) => {
           setCurrentUser(user);
         })
         .catch((err) => {
@@ -63,8 +65,39 @@ const App = () => {
   }, [token, isLoggedIn, navigate]);
 
   const logOut = () => {
+    localStorage.removeItem('jwt');
     setIsLoggedIn(false);
-    navigate('/', { replace: true });
+    setToken('');
+    setCurrentUser({});
+    navigate('/');
+  };
+
+  const registerUser = (userData) => {
+    api
+      .registerUser(userData)
+      .then(() => {
+        navigate('/');
+        navigate('/sign-in', { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const loginUser = (loginData) => {
+    api
+      .loginUser(loginData)
+      .then((res) => {
+        setToken(res.token);
+        setIsLoggedIn(true);
+        localStorage.setItem('jwt', res.token);
+
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoginError('Что-то пошло не так! Попробуйте ещё раз.');
+      });
   };
 
   const isBurgerOpened = false;
@@ -85,11 +118,26 @@ const App = () => {
         <Routes>
           <Route
             path="/signin"
-            element={<Login isLoggedIn={isLoggedIn} />}
+            element={
+              <Login
+                isLoggedIn={isLoggedIn}
+                loginUser={loginUser}
+                errorMessage={loginError}
+                title="Вход"
+                buttonText="Войти"
+              />
+            }
           ></Route>
           <Route
             path="/signup"
-            element={<Register isLoggedIn={isLoggedIn} />}
+            element={
+              <Register
+                isLoggedIn={isLoggedIn}
+                registerUser={registerUser}
+                title={'Регистрация'}
+                buttonText={'Зарегистрироваться'}
+              />
+            }
           ></Route>
           <Route
             path="/"

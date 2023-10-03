@@ -36,14 +36,7 @@ class MainApi {
   loginUser = (loginData) =>
     this.#makeRequest('POST', '/signin', loginData, 'notSave');
 
-  // addNewCard = (cardData) => this.#makeRequest('POST', '/cards', cardData);
-
-  // deleteCard = (id) => this.#makeRequest('DELETE', `/cards/${id}`);
-
-  // changeLikeCardStatus = (id, isLiked) => {
-  //   const fetchMethod = isLiked ? 'PUT' : 'DELETE';
-  //   return this.#makeRequest(fetchMethod, `/cards/${id}/likes`);
-  // };
+  getUserInfo = () => this.#makeRequest('GET', '/users/me');
 }
 
 const api = new MainApi({

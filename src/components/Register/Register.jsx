@@ -4,14 +4,16 @@ import { useEffect } from 'react';
 import useFormWithValidation from '../../components/hooks/useFormWithValidation';
 import logo from '../../images/logo.svg';
 
-const Register = ({ register }) => {
+const Register = ({ registerUser }) => {
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation();
 
-  function handleSubmit(e) {
+  const patternName = /^[-\sa-zA-Z\sа-яА-ЯёË]+$/;
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    register(values);
-  }
+    registerUser(values);
+  };
 
   useEffect(() => {
     resetForm();
@@ -51,7 +53,7 @@ const Register = ({ register }) => {
                 required
                 minLength="2"
                 maxLength="30"
-                pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+                pattern={patternName}
                 placeholder="Введите имя"
               />
               <span className="register__error">{errors.name || ''}</span>
@@ -104,7 +106,6 @@ const Register = ({ register }) => {
           <Link
             to="/signin"
             className="register__link"
-            onClick={register}
           >
             Войти
           </Link>
