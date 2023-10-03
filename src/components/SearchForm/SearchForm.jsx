@@ -1,5 +1,5 @@
 import './SearchForm.css';
-import useFormWithValidation from '../hooks/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 const SearchForm = () => {

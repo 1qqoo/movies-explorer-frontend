@@ -27,7 +27,6 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
   const [loginError, setLoginError] = useState('');
-
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import useFormWithValidation from '../../components/hooks/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 import logo from '../../images/logo.svg';
 
 const Register = ({ registerUser }) => {

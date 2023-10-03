@@ -1,5 +1,5 @@
 import './Profile.css';
-import useFormWithValidation from '../../components/hooks/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 import { useContext, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
