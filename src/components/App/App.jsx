@@ -16,6 +16,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
+import Preloader from '../Preloader/Preloader';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -25,9 +26,10 @@ const App = () => {
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(localStorage.getItem('jwt'));
   const [loginError, setLoginError] = useState('');
   const [currentUser, setCurrentUser] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -43,12 +45,8 @@ const App = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    setToken(jwt);
-  }, [token]);
-
-  useEffect(() => {
-    if (!token || isLoggedIn) {
+    if (!token) {
+      setIsLoading(false);
       return;
     }
     api.setAuthHeaders(token);
@@ -56,12 +54,14 @@ const App = () => {
       .getUserInfo()
       .then(() => {
         setIsLoggedIn(true);
-        navigate('/');
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, [token, isLoggedIn, navigate]);
+  }, [token]);
 
   const logOut = () => {
     localStorage.removeItem('jwt');
@@ -89,6 +89,7 @@ const App = () => {
       .then((res) => {
         setToken(res.token);
         setIsLoggedIn(true);
+        api.setAuthHeaders(res.token);
         localStorage.setItem('jwt', res.token);
 
         navigate('/');
@@ -104,7 +105,9 @@ const App = () => {
   const goBack = () => {
     navigate(-1);
   };
-
+  if (isLoading) {
+    return <Preloader />;
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
