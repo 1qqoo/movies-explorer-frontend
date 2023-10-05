@@ -1,3 +1,4 @@
+import './InfoTooltip.css';
 import React from 'react';
 import infoToltipSuccess from '../../images/Union.svg';
 import infoToltipFailure from '../../images/Union-krestik.svg';
