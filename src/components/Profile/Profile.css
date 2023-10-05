@@ -44,7 +44,6 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
   align-items: center;
   border-bottom: 1px solid #424242;
   padding-bottom: 10px;
@@ -148,6 +147,17 @@
 
 .profile__button-edit_disabled:hover {
   opacity: 1;
+}
+
+.profile__button-save {
+  padding: 14px 168px;
+  background-color: #3ddc84;
+  color: aliceblue;
+}
+
+.profile__button-save_disabled {
+  background-color: rgba(248, 248, 248, 1);
+  color: #424242;
 }
 
 .profile__button-exit {

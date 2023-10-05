@@ -187,12 +187,7 @@ const App = () => {
             ></Route>
             <Route
               path="/profile"
-              element={
-                <Profile
-                  isLoggedIn={isLoggedIn}
-                  onClick={logOut}
-                />
-              }
+              element={<Profile onClick={logOut} />}
             ></Route>
             <Route
               path="*"
