@@ -17,6 +17,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -30,6 +31,16 @@ const App = () => {
   const [loginError, setLoginError] = useState('');
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isRegister, setIsRegister] = useState({
+    status: '',
+    message: '',
+  });
+
+  const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
+
+  const closeAllPopups = () => {
+    setIsOpenInfoTooltip(false);
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -75,10 +86,20 @@ const App = () => {
     api
       .registerUser(userData)
       .then(() => {
+        setIsOpenInfoTooltip(true);
+        setIsRegister({
+          status: true,
+          message: 'Вы успешно зарегистрировались!',
+        });
         navigate('/');
         navigate('/sign-in', { replace: true });
       })
       .catch((err) => {
+        setIsOpenInfoTooltip(true);
+        setIsRegister({
+          status: false,
+          message: 'Что-то пошло не так! Попробуйте ещё раз.',
+        });
         console.log(err);
       });
   };
@@ -170,6 +191,12 @@ const App = () => {
           </Route>
         </Routes>
         {footerPaths.includes(path) && <Footer />}
+        <InfoTooltip
+          isRegister={isRegister}
+          isOpen={isOpenInfoTooltip}
+          onClose={closeAllPopups}
+          alt={'Статус'}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
