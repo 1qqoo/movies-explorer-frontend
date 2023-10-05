@@ -108,6 +108,11 @@ const App = () => {
     api
       .loginUser(loginData)
       .then((res) => {
+        setIsOpenInfoTooltip(true);
+        setIsRegister({
+          status: true,
+          message: 'Вы успешно вошли!',
+        });
         setToken(res.token);
         setIsLoggedIn(true);
         api.setAuthHeaders(res.token);
@@ -116,6 +121,11 @@ const App = () => {
         navigate('/');
       })
       .catch((err) => {
+        setIsOpenInfoTooltip(true);
+        setIsRegister({
+          status: false,
+          message: 'Что-то пошло не так! Попробуйте ещё раз.',
+        });
         console.log(err);
         setLoginError('Что-то пошло не так! Попробуйте ещё раз.');
       });
