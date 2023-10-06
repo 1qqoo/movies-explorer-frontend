@@ -8,8 +8,6 @@ const Register = ({ registerUser }) => {
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation();
 
-  const patternName = /^[-\sa-zA-Z\sа-яА-ЯёË]+$/;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     registerUser(values);
@@ -53,7 +51,7 @@ const Register = ({ registerUser }) => {
                 required
                 minLength="2"
                 maxLength="30"
-                pattern={patternName}
+                pattern={'^[а-яА-Яa-zA-Z0-9]+$'}
                 placeholder="Введите имя"
               />
               <span className="register__error">{errors.name || ''}</span>

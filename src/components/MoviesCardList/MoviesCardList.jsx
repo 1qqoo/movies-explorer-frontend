@@ -1,9 +1,19 @@
+import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-const MoviesCardList = ({}) => {
+const MoviesCardList = ({ movies }) => {
   return (
     <section className="movies-cards">
-      <ul className="movies-cards__list"></ul>
+      <ul className="movies-cards__list">
+        {movies.map((movie) => {
+          return (
+            <MoviesCard
+              key={movie.id}
+              movie={movie}
+            />
+          );
+        })}
+      </ul>
       <button
         type="button"
         className="movies-cards__add-button"

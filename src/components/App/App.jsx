@@ -18,6 +18,7 @@ import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import { MOVIES_URL, getMovies } from '../../utils/MoviesApi';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -31,6 +32,7 @@ const App = () => {
   const [loginError, setLoginError] = useState('');
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [movies, setMovies] = useState(MOVIES_URL);
 
   const [isStatus, setIsStatus] = useState({
     status: '',
@@ -122,10 +124,23 @@ const App = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      api
-        .getUserInfo()
-        .then((user) => {
+      Promise.all([api.getUserInfo(), getMovies()])
+        .then(([user, movies]) => {
           setCurrentUser(user);
+          const newMovies = movies.map((movie) => ({
+            country: movie.country,
+            director: movie.director,
+            duration: movie.duration,
+            year: movie.year,
+            description: movie.description,
+            image: MOVIES_URL + movie.image.url,
+            trailerLink: movie.trailerLink,
+            thumbnail: MOVIES_URL + movie.image.formats.thumbnail.url,
+            movieId: movie.id,
+            nameRU: movie.nameRU,
+            nameEN: movie.nameEN,
+          }));
+          setMovies(newMovies);
         })
         .catch((err) => {
           console.log(err);
@@ -201,7 +216,12 @@ const App = () => {
           <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
             <Route
               path="/movies"
-              element={<Movies isLoggedIn={isLoggedIn} />}
+              element={
+                <Movies
+                  isLoggedIn={isLoggedIn}
+                  movies={movies}
+                />
+              }
             ></Route>
             <Route
               path="/saved-movies"

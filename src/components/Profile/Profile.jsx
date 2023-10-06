@@ -10,7 +10,6 @@ export default function Profile({ onClick, updateUser }) {
     email: currentUser.email,
   });
   const [isEditProfile, setIsEditProfile] = useState(false);
-
   const openEditProfile = (e) => {
     e.preventDefault();
     setIsEditProfile(true);
@@ -56,7 +55,7 @@ export default function Profile({ onClick, updateUser }) {
                 disabled={!isEditProfile}
                 minLength="2"
                 maxLength="30"
-                pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+                pattern={'^[а-яА-Яa-zA-Z0-9]+$'}
                 placeholder="Введите новое имя"
               />
             </label>

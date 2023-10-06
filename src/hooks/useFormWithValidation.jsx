@@ -11,7 +11,7 @@ const useFormWithValidation = (initValues = {}) => {
 
     if (name === 'name' && input.validity.patternMismatch) {
       input.setCustomValidity(
-        'Имя должно содержать только латиницу, кириллицу, пробел или дефис.'
+        'Имя должно содержать только латиницу, кириллицу.'
       );
     } else {
       input.setCustomValidity('');
