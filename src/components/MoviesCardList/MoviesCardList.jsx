@@ -8,7 +8,7 @@ const MoviesCardList = ({ movies }) => {
         {movies.map((movie) => {
           return (
             <MoviesCard
-              key={movie.id}
+              key={movie.movieId}
               movie={movie}
             />
           );
