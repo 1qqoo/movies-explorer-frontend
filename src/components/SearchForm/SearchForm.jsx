@@ -3,7 +3,7 @@ import useFormWithValidation from '../../hooks/useFormWithValidation';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 const SearchForm = () => {
-  const { values, handleChange } = useFormWithValidation();
+  const { values, handleChange } = useFormWithValidation({ search: '' });
   return (
     <section className="search">
       <form

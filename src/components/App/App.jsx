@@ -31,7 +31,8 @@ const App = () => {
   const [loginError, setLoginError] = useState('');
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [isRegister, setIsRegister] = useState({
+
+  const [isStatus, setIsStatus] = useState({
     status: '',
     message: '',
   });
@@ -41,38 +42,6 @@ const App = () => {
   const closeAllPopups = () => {
     setIsOpenInfoTooltip(false);
   };
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      api
-        .getUserInfo()
-        .then((user) => {
-          setCurrentUser(user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [isLoggedIn]);
-
-  useEffect(() => {
-    if (!token) {
-      setIsLoading(false);
-      return;
-    }
-    api.setAuthHeaders(token);
-    api
-      .getUserInfo()
-      .then(() => {
-        setIsLoggedIn(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [token]);
 
   const logOut = () => {
     localStorage.removeItem('jwt');
@@ -87,7 +56,7 @@ const App = () => {
       .registerUser(userData)
       .then(() => {
         setIsOpenInfoTooltip(true);
-        setIsRegister({
+        setIsStatus({
           status: true,
           message: 'Вы успешно зарегистрировались!',
         });
@@ -96,7 +65,7 @@ const App = () => {
       })
       .catch((err) => {
         setIsOpenInfoTooltip(true);
-        setIsRegister({
+        setIsStatus({
           status: false,
           message: 'Что-то пошло не так! Попробуйте ещё раз.',
         });
@@ -109,7 +78,7 @@ const App = () => {
       .loginUser(loginData)
       .then((res) => {
         setIsOpenInfoTooltip(true);
-        setIsRegister({
+        setIsStatus({
           status: true,
           message: 'Вы успешно вошли!',
         });
@@ -122,7 +91,7 @@ const App = () => {
       })
       .catch((err) => {
         setIsOpenInfoTooltip(true);
-        setIsRegister({
+        setIsStatus({
           status: false,
           message: 'Что-то пошло не так! Попробуйте ещё раз.',
         });
@@ -130,6 +99,59 @@ const App = () => {
         setLoginError('Что-то пошло не так! Попробуйте ещё раз.');
       });
   };
+
+  const updateUser = (name, email) => {
+    return api
+      .updateUserData(name, email)
+      .then((newUserData) => {
+        setCurrentUser(newUserData);
+        setIsOpenInfoTooltip(true);
+        setIsStatus({
+          status: true,
+          message: 'Вы успешно обновили данные.',
+        });
+      })
+      .catch((err) => {
+        setIsOpenInfoTooltip(true);
+        setIsStatus({
+          status: false,
+          message: 'Что-то пошло не так! Попробуйте ещё раз.',
+        });
+      });
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      api
+        .getUserInfo()
+        .then((user) => {
+          setCurrentUser(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (!token) {
+      setIsLoading(false);
+      return;
+    }
+    api.setAuthHeaders(token);
+    api
+      .getUserInfo()
+      .then((data) => {
+        setIsLoggedIn(true);
+        setCurrentUser(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [token]);
 
   const isBurgerOpened = false;
 
@@ -187,7 +209,12 @@ const App = () => {
             ></Route>
             <Route
               path="/profile"
-              element={<Profile onClick={logOut} />}
+              element={
+                <Profile
+                  onClick={logOut}
+                  updateUser={updateUser}
+                />
+              }
             ></Route>
             <Route
               path="*"
@@ -197,7 +224,7 @@ const App = () => {
         </Routes>
         {footerPaths.includes(path) && <Footer />}
         <InfoTooltip
-          isRegister={isRegister}
+          isRegister={isStatus}
           isOpen={isOpenInfoTooltip}
           onClose={closeAllPopups}
           alt={'Статус'}

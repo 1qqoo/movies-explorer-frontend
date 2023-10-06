@@ -36,6 +36,10 @@ class MainApi {
   loginUser = (loginData) =>
     this.#makeRequest('POST', '/signin', loginData, 'notSave');
 
+  updateUserData = (userData) => {
+    return this.#makeRequest('PATCH', '/users/me', userData);
+  };
+
   getUserInfo = () => this.#makeRequest('GET', '/users/me');
 }
 

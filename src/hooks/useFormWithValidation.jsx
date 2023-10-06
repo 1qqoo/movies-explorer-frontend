@@ -1,11 +1,10 @@
 import { useState, useCallback } from 'react';
 import isEmail from 'validator/es/lib/isEmail';
 
-const useFormWithValidation = () => {
-  const [values, setValues] = useState({});
+const useFormWithValidation = (initValues = {}) => {
+  const [values, setValues] = useState(initValues);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
-
   const handleChange = (e) => {
     const input = e.target;
     const { value, name } = input;
