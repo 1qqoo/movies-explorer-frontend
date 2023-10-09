@@ -225,7 +225,12 @@ const App = () => {
             ></Route>
             <Route
               path="/saved-movies"
-              element={<SavedMovies isLoggedIn={isLoggedIn} />}
+              element={
+                <SavedMovies
+                  isLoggedIn={isLoggedIn}
+                  movies={movies}
+                />
+              }
             ></Route>
             <Route
               path="/profile"
