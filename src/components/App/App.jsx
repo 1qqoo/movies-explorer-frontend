@@ -19,6 +19,7 @@ import api from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { MOVIES_URL, getMovies } from '../../utils/MoviesApi';
+import { correctMovieFormat } from '../../utils/correctMovieFormat';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -27,24 +28,33 @@ const App = () => {
 
   const navigate = useNavigate();
 
+  // Стейты состояния пользователя
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('jwt'));
-  const [loginError, setLoginError] = useState('');
   const [currentUser, setCurrentUser] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [movies, setMovies] = useState(MOVIES_URL);
 
+  // Стейты ошибок
+  const [loginError, setLoginError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const [isStatus, setIsStatus] = useState({
     status: '',
     message: '',
   });
 
+  // Стейты состояния по фильмам
+  const [movies, setMovies] = useState(MOVIES_URL);
+
+  // Стейты состояния по фильмам
+
+  // Уведомление
   const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
 
+  // Закрытие попапов
   const closeAllPopups = () => {
     setIsOpenInfoTooltip(false);
   };
 
+  // Разлогиниться
   const logOut = () => {
     localStorage.removeItem('jwt');
     setIsLoggedIn(false);
@@ -53,6 +63,7 @@ const App = () => {
     navigate('/');
   };
 
+  // Регистрация
   const registerUser = (userData) => {
     api
       .registerUser(userData)
@@ -75,6 +86,7 @@ const App = () => {
       });
   };
 
+  // Авторизация
   const loginUser = (loginData) => {
     api
       .loginUser(loginData)
@@ -102,6 +114,7 @@ const App = () => {
       });
   };
 
+  // Обновить данные профиля
   const updateUser = (name, email) => {
     return api
       .updateUserData(name, email)
@@ -127,20 +140,8 @@ const App = () => {
       Promise.all([api.getUserInfo(), getMovies()])
         .then(([user, movies]) => {
           setCurrentUser(user);
-          const newMovies = movies.map((movie) => ({
-            country: movie.country,
-            director: movie.director,
-            duration: movie.duration,
-            year: movie.year,
-            description: movie.description,
-            image: MOVIES_URL + movie.image.url,
-            trailerLink: movie.trailerLink,
-            thumbnail: MOVIES_URL + movie.image.formats.thumbnail.url,
-            movieId: movie.id,
-            nameRU: movie.nameRU,
-            nameEN: movie.nameEN,
-          }));
-          setMovies(newMovies);
+          const formattedMovies = correctMovieFormat(movies);
+          setMovies(formattedMovies);
         })
         .catch((err) => {
           console.log(err);
@@ -227,8 +228,8 @@ const App = () => {
               path="/saved-movies"
               element={
                 <SavedMovies
-                  isLoggedIn={isLoggedIn}
                   movies={movies}
+                  isLoggedIn={isLoggedIn}
                 />
               }
             ></Route>

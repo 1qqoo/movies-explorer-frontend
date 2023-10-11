@@ -1,12 +1,27 @@
+import { useState } from 'react';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
 
-const MoviesCard = ({ movie }) => {
+const MoviesCard = ({ movie, handleSaveMovie, deleteSaveMovie }) => {
+  const { values } = useFormWithValidation();
   const path = useLocation().pathname;
 
   const duration = `${Math.floor(movie.duration / 60)}ч ${
     movie.duration % 60
   }м`;
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    if (!isChecked) {
+      setIsChecked(true);
+      handleSaveMovie(movie);
+    } else {
+      setIsChecked(false);
+      deleteSaveMovie(movie);
+    }
+  };
 
   return (
     <>
@@ -31,12 +46,16 @@ const MoviesCard = ({ movie }) => {
               <input
                 className="movies-card__input"
                 type="checkbox"
+                value={values}
+                onChange={handleCheckboxChange}
+                checked={isChecked}
               />
               <span className="movies-card__checkbox"></span>
             </label>
           ) : (
             <button
               type="button"
+              onChange={handleCheckboxChange}
               className="movies-card__button movies-card__button_type_unsave"
               aria-label="Удалить фильм из сохранённых"
               title="Удалить фильм из сохранённых"

@@ -41,6 +41,10 @@ class MainApi {
   };
 
   getUserInfo = () => this.#makeRequest('GET', '/users/me');
+
+  getSavedMovies = () => this.#makeRequest('GET', '/movies');
+
+  deleteMovie = (id) => this.#makeRequest('DELETE', `/movies/${id}`);
 }
 
 const api = new MainApi({
