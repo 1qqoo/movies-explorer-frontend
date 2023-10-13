@@ -44,6 +44,8 @@ class MainApi {
 
   getSavedMovies = () => this.#makeRequest('GET', '/movies');
 
+  createMovie = (movie) => this.#makeRequest('POST', '/movies/', movie);
+
   deleteMovie = (id) => this.#makeRequest('DELETE', `/movies/${id}`);
 }
 

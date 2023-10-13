@@ -18,8 +18,6 @@ import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import { MOVIES_URL, getMovies } from '../../utils/MoviesApi';
-import { correctMovieFormat } from '../../utils/correctMovieFormat';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -42,9 +40,8 @@ const App = () => {
   });
 
   // Стейты состояния по фильмам
-  const [movies, setMovies] = useState(MOVIES_URL);
-
-  // Стейты состояния по фильмам
+  const [movies, setMovies] = useState([]);
+  const [saveMovies, setSaveMovies] = useState([]);
 
   // Уведомление
   const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
@@ -54,16 +51,13 @@ const App = () => {
     setIsOpenInfoTooltip(false);
   };
 
-  // Разлогиниться
-  const logOut = () => {
-    localStorage.removeItem('jwt');
-    setIsLoggedIn(false);
-    setToken('');
-    setCurrentUser({});
-    navigate('/');
+  const isBurgerOpened = false;
+
+  const goBack = () => {
+    navigate(-1);
   };
 
-  // Регистрация
+  // Регистрация, авторизация =================================================>
   const registerUser = (userData) => {
     api
       .registerUser(userData)
@@ -86,7 +80,6 @@ const App = () => {
       });
   };
 
-  // Авторизация
   const loginUser = (loginData) => {
     api
       .loginUser(loginData)
@@ -114,7 +107,16 @@ const App = () => {
       });
   };
 
-  // Обновить данные профиля
+  const logOut = () => {
+    localStorage.removeItem('jwt');
+    setIsLoggedIn(false);
+    setToken('');
+    setCurrentUser({});
+    navigate('/');
+  };
+  // ============================================================
+
+  // Обновить данные профиля===========================>
   const updateUser = (name, email) => {
     return api
       .updateUserData(name, email)
@@ -134,24 +136,7 @@ const App = () => {
         });
       });
   };
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      Promise.all([api.getUserInfo(), getMovies()])
-        .then(([user, movies]) => {
-          setCurrentUser(user);
-          const formattedMovies = correctMovieFormat(movies);
-          setMovies(formattedMovies);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [isLoggedIn]);
-
+  // ============================================================
   useEffect(() => {
     if (!token) {
       setIsLoading(false);
@@ -169,11 +154,22 @@ const App = () => {
       });
   }, [token]);
 
-  const isBurgerOpened = false;
+  useEffect(() => {
+    if (isLoggedIn) {
+      Promise.all([api.getUserInfo(), api.getSavedMovies()])
+        .then(([user, movies]) => {
+          setCurrentUser(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isLoggedIn]);
 
-  const goBack = () => {
-    navigate(-1);
-  };
+  // Отрисовка
   if (isLoading) {
     return <Preloader />;
   }
@@ -228,7 +224,7 @@ const App = () => {
               path="/saved-movies"
               element={
                 <SavedMovies
-                  movies={movies}
+                  movies={saveMovies}
                   isLoggedIn={isLoggedIn}
                 />
               }

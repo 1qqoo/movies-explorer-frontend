@@ -2,14 +2,8 @@ import './SearchForm.css';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-const SearchForm = ({ searchMovies }) => {
+const SearchForm = () => {
   const { values, handleChange } = useFormWithValidation({ search: '' });
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const searchElement = values.search;
-    searchMovies(searchElement);
-  };
 
   return (
     <section className="search">
@@ -17,7 +11,7 @@ const SearchForm = ({ searchMovies }) => {
         className="search__form"
         name="search"
         noValidate
-        onSubmit={handleSubmit}
+        // onSubmit={}
       >
         <div className="search__container">
           <input

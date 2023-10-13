@@ -1,24 +1,16 @@
-import { useState } from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
-const Movies = ({ movies }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const searchMovies = (searchItem) => {
-    setSearchQuery(searchItem);
-  };
-
+const Movies = ({ movies, onSaveMovie, deleteMovie, isSaveCheck }) => {
   return (
     <main className="movies">
-      <SearchForm
-        movies={movies}
-        searchMovies={searchMovies}
-      />
+      <SearchForm movies={movies} />
       <MoviesCardList
         movies={movies}
-        searchQuery={searchQuery}
+        onSaveMovie={onSaveMovie}
+        isSaveCheck={isSaveCheck}
+        deleteMovie={deleteMovie}
       />
     </main>
   );

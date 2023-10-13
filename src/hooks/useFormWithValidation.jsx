@@ -5,6 +5,7 @@ const useFormWithValidation = (initValues = {}) => {
   const [values, setValues] = useState(initValues);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
+
   const handleChange = (e) => {
     const input = e.target;
     const { value, name } = input;
@@ -25,7 +26,10 @@ const useFormWithValidation = (initValues = {}) => {
       }
     }
 
-    setValues({ ...values, [name]: value }); // универсальный обработчик полей
+    setValues({
+      ...values,
+      [input.name]: input.type === 'checkbox' ? input.checked : input.value,
+    }); // универсальный обработчик полей
     setErrors({ ...errors, [name]: input.validationMessage }); // ошибок
     setIsValid(input.closest('form').checkValidity()); // проверка валидности
   };
