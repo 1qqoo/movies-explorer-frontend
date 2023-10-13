@@ -5,14 +5,12 @@ const MoviesCardList = ({ movies }) => {
   return (
     <section className="movies-cards">
       <ul className="movies-cards__list">
-        {movies.map((movie) => {
-          return (
-            <MoviesCard
-              key={movie.movieId}
-              movie={movie}
-            />
-          );
-        })}
+        {movies.map((movie) => (
+          <MoviesCard
+            movie={movie}
+            key={movie.movieId}
+          />
+        ))}
       </ul>
       <button
         type="button"

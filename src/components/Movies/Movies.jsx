@@ -2,16 +2,11 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
-const Movies = ({ movies, onSaveMovie, deleteMovie, isSaveCheck }) => {
+const Movies = ({ movies }) => {
   return (
     <main className="movies">
-      <SearchForm movies={movies} />
-      <MoviesCardList
-        movies={movies}
-        onSaveMovie={onSaveMovie}
-        isSaveCheck={isSaveCheck}
-        deleteMovie={deleteMovie}
-      />
+      <SearchForm />
+      <MoviesCardList movies={movies} />
     </main>
   );
 };

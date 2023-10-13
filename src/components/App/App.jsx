@@ -18,6 +18,8 @@ import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import { MOVIES_URL, getMovies } from '../../utils/MoviesApi';
+import { correctMovieFormat } from '../../utils/correctMovieFormat';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -38,12 +40,8 @@ const App = () => {
     status: '',
     message: '',
   });
+  const [movies, setMovies] = useState(MOVIES_URL);
 
-  // Стейты состояния по фильмам
-  const [movies, setMovies] = useState([]);
-  const [saveMovies, setSaveMovies] = useState([]);
-
-  // Уведомление
   const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
 
   // Закрытие попапов
@@ -56,6 +54,42 @@ const App = () => {
   const goBack = () => {
     navigate(-1);
   };
+
+  // ====================================
+
+  useEffect(() => {
+    if (!token) {
+      setIsLoading(false);
+      return;
+    }
+    api.setAuthHeaders(token);
+    api
+      .getUserInfo()
+      .then((data) => {
+        setIsLoggedIn(true);
+        setCurrentUser(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [token]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      Promise.all([api.getUserInfo(), getMovies()])
+        .then(([user, movie]) => {
+          setCurrentUser(user);
+          const newMovies = correctMovieFormat(movie);
+          setMovies(newMovies);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isLoggedIn]);
 
   // Регистрация, авторизация =================================================>
   const registerUser = (userData) => {
@@ -111,10 +145,10 @@ const App = () => {
     localStorage.removeItem('jwt');
     setIsLoggedIn(false);
     setToken('');
+    setMovies([]);
     setCurrentUser({});
     navigate('/');
   };
-  // ============================================================
 
   // Обновить данные профиля===========================>
   const updateUser = (name, email) => {
@@ -137,37 +171,6 @@ const App = () => {
       });
   };
   // ============================================================
-  useEffect(() => {
-    if (!token) {
-      setIsLoading(false);
-      return;
-    }
-    api.setAuthHeaders(token);
-    api
-      .getUserInfo()
-      .then((data) => {
-        setIsLoggedIn(true);
-        setCurrentUser(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [token]);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      Promise.all([api.getUserInfo(), api.getSavedMovies()])
-        .then(([user, movies]) => {
-          setCurrentUser(user);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [isLoggedIn]);
 
   // Отрисовка
   if (isLoading) {
@@ -213,21 +216,11 @@ const App = () => {
           <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
             <Route
               path="/movies"
-              element={
-                <Movies
-                  isLoggedIn={isLoggedIn}
-                  movies={movies}
-                />
-              }
+              element={<Movies movies={movies} />}
             ></Route>
             <Route
               path="/saved-movies"
-              element={
-                <SavedMovies
-                  movies={saveMovies}
-                  isLoggedIn={isLoggedIn}
-                />
-              }
+              element={<SavedMovies movies={movies} />}
             ></Route>
             <Route
               path="/profile"

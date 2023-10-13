@@ -1,14 +1,11 @@
 import useFormWithValidation from '../../hooks/useFormWithValidation';
+import { durationFormat } from '../../utils/utils';
 import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
 
 const MoviesCard = ({ movie }) => {
   const { values } = useFormWithValidation();
   const path = useLocation().pathname;
-
-  const duration = `${Math.floor(movie.duration / 60)}ч ${
-    movie.duration % 60
-  }м`;
 
   return (
     <>
@@ -34,6 +31,7 @@ const MoviesCard = ({ movie }) => {
                 className="movies-card__input"
                 type="checkbox"
                 value={values}
+                // onClick={handleSaveClick}
               />
               <span className="movies-card__checkbox"></span>
             </label>
@@ -43,10 +41,13 @@ const MoviesCard = ({ movie }) => {
               className="movies-card__button movies-card__button_type_unsave"
               aria-label="Удалить фильм из сохранённых"
               title="Удалить фильм из сохранённых"
+              // onClick={handleDeleteClick}
             ></button>
           )}
         </div>
-        <span className="movies-card__duration">{duration}</span>
+        <span className="movies-card__duration">
+          {durationFormat(movie.duration)}
+        </span>
       </li>
     </>
   );

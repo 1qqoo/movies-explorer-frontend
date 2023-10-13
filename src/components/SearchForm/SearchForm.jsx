@@ -1,17 +1,13 @@
 import './SearchForm.css';
-import useFormWithValidation from '../../hooks/useFormWithValidation';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 const SearchForm = () => {
-  const { values, handleChange } = useFormWithValidation({ search: '' });
-
   return (
     <section className="search">
       <form
         className="search__form"
         name="search"
         noValidate
-        // onSubmit={}
       >
         <div className="search__container">
           <input
@@ -20,8 +16,6 @@ const SearchForm = () => {
             type="text"
             placeholder="Фильм"
             autoComplete="off"
-            value={values.search || ''}
-            onChange={handleChange}
             required
           />
           <button
