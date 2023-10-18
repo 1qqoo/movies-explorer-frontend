@@ -1,27 +1,19 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-const MoviesCardList = ({ movies, searchQuery, shortFilm }) => {
-  const filteredMovies = movies.filter((movie) => {
-    const movieNameRU = movie.nameRU || ''; // Если nameRU не существует, присваиваем пустую строку
-    const movieNameEN = movie.nameEN || ''; // Если nameEN не существует, присваиваем пустую строку
+const MoviesCardList = ({ movies, searchQuery, shortFilm, searched }) => {
+  const filteredMovies = searched
+    ? movies.filter((movie) => {
+        const movieNameRU = (movie.nameRU || '').toLowerCase();
+        const movieNameEN = (movie.nameEN || '').toLowerCase();
 
-    const searchQueryLower = searchQuery ? searchQuery.toLowerCase() : '';
+        const includesSearchQuery =
+          movieNameRU.includes(searchQuery.search.toLowerCase()) ||
+          movieNameEN.includes(searchQuery.search.toLowerCase());
 
-    const isNameRUMatch = movieNameRU
-      .toLowerCase()
-      .includes(searchQueryLower.toLowerCase());
-    const isNameENMatch = movieNameEN
-      .toLowerCase()
-      .includes(searchQueryLower.toLowerCase());
-
-    return (
-      (isNameRUMatch ||
-        isNameENMatch || // Поиск по обоим полям
-        movie.description.toLowerCase().includes(searchQuery.toLowerCase())) &&
-      (!shortFilm || movie.duration <= 40)
-    );
-  });
+        return includesSearchQuery && (!shortFilm || movie.duration <= 40);
+      })
+    : [];
 
   return (
     <section className="movies-cards">
