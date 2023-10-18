@@ -106,19 +106,11 @@ const App = () => {
       .deleteMovie(movieId)
       .then(() => {
         setSavedMovies((prevSavedMovies) =>
-          prevSavedMovies.filter((savedMovie) => savedMovie !== movieId)
+          prevSavedMovies.filter((savedMovie) => savedMovie._id !== movieId)
         );
       })
       .catch(console.error);
   };
-
-  useEffect(() => {
-    const savedMoviesFromLocalStorage = localStorage.getItem('savedMovies');
-    if (savedMoviesFromLocalStorage) {
-      const parsedSavedMovies = JSON.parse(savedMoviesFromLocalStorage);
-      setSavedMovies(parsedSavedMovies);
-    }
-  }, [savedMovies]);
 
   function localFilms() {
     return JSON.parse(localStorage.getItem('movies') ?? '[]');
