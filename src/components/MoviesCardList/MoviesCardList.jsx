@@ -7,9 +7,11 @@ const MoviesCardList = ({ movies, searchQuery, shortFilm, searched }) => {
         const movieNameRU = (movie.nameRU || '').toLowerCase();
         const movieNameEN = (movie.nameEN || '').toLowerCase();
 
+        const query = searchQuery.search || '';
+
         const includesSearchQuery =
-          movieNameRU.includes(searchQuery.search.toLowerCase()) ||
-          movieNameEN.includes(searchQuery.search.toLowerCase());
+          movieNameRU.includes(query.toLowerCase()) ||
+          movieNameEN.includes(query.toLowerCase());
 
         return includesSearchQuery && (!shortFilm || movie.duration <= 40);
       })
