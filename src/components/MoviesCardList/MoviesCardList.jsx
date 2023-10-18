@@ -1,7 +1,14 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-const MoviesCardList = ({ movies, searchQuery, shortFilm, searched }) => {
+const MoviesCardList = ({
+  movies,
+  searchQuery,
+  shortFilm,
+  searched,
+  onToggleSave,
+  onDeleteSave,
+}) => {
   const filteredMovies = searched
     ? movies.filter((movie) => {
         const movieNameRU = (movie.nameRU || '').toLowerCase();
@@ -22,6 +29,8 @@ const MoviesCardList = ({ movies, searchQuery, shortFilm, searched }) => {
       <ul className="movies-cards__list">
         {filteredMovies.map((movie) => (
           <MoviesCard
+            onDeleteSave={onDeleteSave}
+            onToggleSave={onToggleSave}
             movie={movie}
             key={movie.movieId}
           />

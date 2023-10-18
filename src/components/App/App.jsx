@@ -18,8 +18,6 @@ import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import { correctMovieFormat } from '../../utils/utils';
-import { getMovies } from '../../utils/MoviesApi';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -96,15 +94,23 @@ const App = () => {
     return JSON.parse(localStorage.getItem('movies') ?? '[]');
   }
 
-  const getAllMovies = () => {
-    return getMovies()
-      .then((newMovies) => {
-        const newFormatMovies = correctMovieFormat(newMovies);
-        setMovies(newFormatMovies);
-        localStorage.setItem('movies', JSON.stringify(newFormatMovies));
-      })
-      .catch(console.error);
+  const addMovieToSavedMovies = (movie) => {
+    setSavedMovies([...savedMovies, movie]);
   };
+
+  const deleteMovieToSavedMovies = (movie) => {
+    setSavedMovies((prevSavedMovies) =>
+      prevSavedMovies.filter((savedMovie) => savedMovie !== movie)
+    );
+  };
+
+  useEffect(() => {
+    const savedMoviesFromLocalStorage = localStorage.getItem('savedMovies');
+    if (savedMoviesFromLocalStorage) {
+      const parsedSavedMovies = JSON.parse(savedMoviesFromLocalStorage);
+      setSavedMovies(parsedSavedMovies);
+    }
+  }, []);
 
   // Регистрация, авторизация =================================================>
   const registerUser = (userData) => {
@@ -231,11 +237,23 @@ const App = () => {
           <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
             <Route
               path="/movies"
-              element={<Movies movies={movies} />}
+              element={
+                <Movies
+                  movies={movies}
+                  onToggleSave={addMovieToSavedMovies}
+                  onDeleteSave={deleteMovieToSavedMovies}
+                />
+              }
             ></Route>
             <Route
               path="/saved-movies"
-              element={<SavedMovies movies={savedMovies} />}
+              element={
+                <SavedMovies
+                  movies={savedMovies}
+                  onToggleSave={addMovieToSavedMovies}
+                  onDeleteSave={deleteMovieToSavedMovies}
+                />
+              }
             ></Route>
             <Route
               path="/profile"
