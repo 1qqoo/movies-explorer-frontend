@@ -18,6 +18,8 @@ import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import { correctMovieFormat } from '../../utils/utils';
+import { getMovies } from '../../utils/MoviesApi';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -112,6 +114,16 @@ const App = () => {
       .catch(console.error);
   };
 
+  const getAllMovies = () => {
+    getMovies()
+      .then((newMovies) => {
+        const formattedMovies = correctMovieFormat(newMovies);
+        setMovies(formattedMovies);
+        localStorage.setItem('movies', JSON.stringify(formattedMovies));
+      })
+      .catch(console.error);
+  };
+
   function localFilms() {
     return JSON.parse(localStorage.getItem('movies') ?? '[]');
   }
@@ -159,7 +171,7 @@ const App = () => {
         api.setAuthHeaders(res.token);
         localStorage.setItem('jwt', res.token);
 
-        navigate('/');
+        navigate('/movies');
       })
       .catch((err) => {
         setIsOpenInfoTooltip(true);
@@ -173,7 +185,7 @@ const App = () => {
   };
 
   const logOut = () => {
-    localStorage.removeItem('jwt');
+    localStorage.clear();
     setIsLoggedIn(false);
     setToken('');
     setMovies([]);
@@ -250,6 +262,7 @@ const App = () => {
               path="/movies"
               element={
                 <Movies
+                  getMovies={getAllMovies}
                   movies={movies}
                   onToggleSave={addMovieToSavedMovies}
                   onDeleteSave={deleteMovieToSavedMovies}

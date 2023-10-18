@@ -1,16 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
-const Movies = ({ movies, onToggleSave, onDeleteSave, checkSavedMovies }) => {
+const Movies = ({
+  movies,
+  onToggleSave,
+  onDeleteSave,
+  checkSavedMovies,
+  getMovies,
+}) => {
   const [searched, setSearched] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [shortFilm, setShortFilm] = useState(false);
 
   const handleSearchChange = (query) => {
+    if (!searched) {
+      getMovies();
+      setSearched(true);
+    }
     setSearchQuery(query);
-    setSearched(true);
   };
 
   const handleShortFilmChange = (checked) => {
