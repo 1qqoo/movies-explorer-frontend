@@ -3,7 +3,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
-const Movies = ({ movies, onToggleSave, onDeleteSave }) => {
+const Movies = ({ movies, onToggleSave, onDeleteSave, checkSavedMovies }) => {
   const [searched, setSearched] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [shortFilm, setShortFilm] = useState(false);
@@ -24,6 +24,7 @@ const Movies = ({ movies, onToggleSave, onDeleteSave }) => {
         onShortFilmChange={handleShortFilmChange}
       />
       <MoviesCardList
+        checkSavedMovies={checkSavedMovies}
         onDeleteSave={onDeleteSave}
         onToggleSave={onToggleSave}
         searched={searched}

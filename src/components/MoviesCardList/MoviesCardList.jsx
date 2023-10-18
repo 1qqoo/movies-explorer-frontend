@@ -8,6 +8,7 @@ const MoviesCardList = ({
   searched,
   onToggleSave,
   onDeleteSave,
+  checkSavedMovies,
 }) => {
   const filteredMovies = searched
     ? movies.filter((movie) => {
@@ -32,7 +33,8 @@ const MoviesCardList = ({
             onDeleteSave={onDeleteSave}
             onToggleSave={onToggleSave}
             movie={movie}
-            key={movie.movieId}
+            key={movie._id || movie.movieId}
+            checkSavedMovies={checkSavedMovies}
           />
         ))}
       </ul>

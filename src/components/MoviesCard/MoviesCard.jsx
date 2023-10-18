@@ -1,28 +1,25 @@
-import { useState } from 'react';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 import { durationFormat } from '../../utils/utils';
 import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
 
-const MoviesCard = ({ movie, onToggleSave, onDeleteSave }) => {
+const MoviesCard = ({
+  movie,
+  onToggleSave,
+  onDeleteSave,
+  checkSavedMovies,
+}) => {
   const { values } = useFormWithValidation();
   const path = useLocation().pathname;
-  const [isSaved, setIsSaved] = useState(false);
+  const isSaved = checkSavedMovies(movie);
 
-  const handleToggleSave = () => {
-    if (!isSaved) {
-      onToggleSave(movie);
-    } else {
-      onDeleteSave(movie);
-    }
-
-    setIsSaved(!isSaved);
+  const handleSaveClick = () => {
+    !isSaved && onToggleSave(movie);
   };
 
-  localStorage.setItem('isCheckboxChecked', isSaved);
-
-  const isCheckboxChecked =
-    localStorage.getItem('isCheckboxChecked') === 'true';
+  const handleDeleteClick = () => {
+    onDeleteSave(movie);
+  };
 
   return (
     <>
@@ -48,8 +45,8 @@ const MoviesCard = ({ movie, onToggleSave, onDeleteSave }) => {
                 className="movies-card__input"
                 type="checkbox"
                 value={values}
-                onChange={handleToggleSave}
-                checked={isCheckboxChecked}
+                onChange={!isSaved ? handleSaveClick : handleDeleteClick}
+                checked={isSaved}
               />
               <span className="movies-card__checkbox"></span>
             </label>
@@ -59,7 +56,7 @@ const MoviesCard = ({ movie, onToggleSave, onDeleteSave }) => {
               className="movies-card__button movies-card__button_type_unsave"
               aria-label="Удалить фильм из сохранённых"
               title="Удалить фильм из сохранённых"
-              onClick={handleToggleSave}
+              onClick={handleDeleteClick}
             ></button>
           )}
         </div>

@@ -90,18 +90,26 @@ const App = () => {
   }, [isLoggedIn]);
 
   // Функционал============
-  function localFilms() {
-    return JSON.parse(localStorage.getItem('movies') ?? '[]');
-  }
-
   const addMovieToSavedMovies = (movie) => {
-    setSavedMovies([...savedMovies, movie]);
+    api
+      .createMovie(movie)
+      .then((movie) => {
+        setSavedMovies([...savedMovies, movie]);
+      })
+      .catch(console.error);
   };
 
   const deleteMovieToSavedMovies = (movie) => {
-    setSavedMovies((prevSavedMovies) =>
-      prevSavedMovies.filter((savedMovie) => savedMovie !== movie)
-    );
+    const movieId =
+      movie._id || savedMovies.find((i) => i.movieId === movie.movieId)._id;
+    api
+      .deleteMovie(movieId)
+      .then(() => {
+        setSavedMovies((prevSavedMovies) =>
+          prevSavedMovies.filter((savedMovie) => savedMovie !== movieId)
+        );
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -110,7 +118,17 @@ const App = () => {
       const parsedSavedMovies = JSON.parse(savedMoviesFromLocalStorage);
       setSavedMovies(parsedSavedMovies);
     }
-  }, []);
+  }, [savedMovies]);
+
+  function localFilms() {
+    return JSON.parse(localStorage.getItem('movies') ?? '[]');
+  }
+
+  function checkSavedMovies(movie) {
+    return savedMovies.some(
+      (i) => i._id === movie._id || i.movieId === movie.movieId
+    );
+  }
 
   // Регистрация, авторизация =================================================>
   const registerUser = (userData) => {
@@ -167,6 +185,7 @@ const App = () => {
     setIsLoggedIn(false);
     setToken('');
     setMovies([]);
+    setSavedMovies([]);
     setCurrentUser({});
     navigate('/');
   };
@@ -242,6 +261,7 @@ const App = () => {
                   movies={movies}
                   onToggleSave={addMovieToSavedMovies}
                   onDeleteSave={deleteMovieToSavedMovies}
+                  checkSavedMovies={checkSavedMovies}
                 />
               }
             ></Route>
@@ -250,8 +270,8 @@ const App = () => {
               element={
                 <SavedMovies
                   movies={savedMovies}
-                  onToggleSave={addMovieToSavedMovies}
                   onDeleteSave={deleteMovieToSavedMovies}
+                  checkSavedMovies={checkSavedMovies}
                 />
               }
             ></Route>
