@@ -18,8 +18,8 @@ import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import { MOVIES_URL, getMovies } from '../../utils/MoviesApi';
-import { correctMovieFormat } from '../../utils/correctMovieFormat';
+import { correctMovieFormat } from '../../utils/utils';
+import { getMovies } from '../../utils/MoviesApi';
 
 const App = () => {
   const path = useLocation().pathname;
@@ -40,7 +40,8 @@ const App = () => {
     status: '',
     message: '',
   });
-  const [movies, setMovies] = useState(MOVIES_URL);
+  const [movies, setMovies] = useState(localFilms());
+  const [savedMovies, setSavedMovies] = useState([]);
 
   const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
 
@@ -76,11 +77,10 @@ const App = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      Promise.all([api.getUserInfo(), getMovies()])
-        .then(([user, movie]) => {
+      Promise.all([api.getUserInfo(), api.getSavedMovies()])
+        .then(([user, savedMovies]) => {
           setCurrentUser(user);
-          const newMovies = correctMovieFormat(movie);
-          setMovies(newMovies);
+          setSavedMovies(savedMovies.reverse());
         })
         .catch((err) => {
           console.log(err);
@@ -90,6 +90,21 @@ const App = () => {
         });
     }
   }, [isLoggedIn]);
+
+  // Функционал============
+  function localFilms() {
+    return JSON.parse(localStorage.getItem('movies') ?? '[]');
+  }
+
+  const getAllMovies = () => {
+    return getMovies()
+      .then((newMovies) => {
+        const newFormatMovies = correctMovieFormat(newMovies);
+        setMovies(newFormatMovies);
+        localStorage.setItem('movies', JSON.stringify(newFormatMovies));
+      })
+      .catch(console.error);
+  };
 
   // Регистрация, авторизация =================================================>
   const registerUser = (userData) => {
@@ -216,11 +231,16 @@ const App = () => {
           <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
             <Route
               path="/movies"
-              element={<Movies movies={movies} />}
+              element={
+                <Movies
+                  movies={movies}
+                  getAllMovies={getAllMovies}
+                />
+              }
             ></Route>
             <Route
               path="/saved-movies"
-              element={<SavedMovies movies={movies} />}
+              element={<SavedMovies movies={savedMovies} />}
             ></Route>
             <Route
               path="/profile"

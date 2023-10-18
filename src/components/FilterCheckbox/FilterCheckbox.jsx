@@ -1,6 +1,6 @@
 import './FilterCheckbox.css';
 
-const FilterCheckbox = ({ value, onChange }) => {
+const FilterCheckbox = ({ isChecked, onCheckboxChange }) => {
   return (
     <>
       <label
@@ -12,8 +12,8 @@ const FilterCheckbox = ({ value, onChange }) => {
           type="checkbox"
           id="checkbox"
           name="checkbox"
-          checked={value}
-          onChange={onChange}
+          checked={isChecked}
+          onChange={onCheckboxChange}
         />
         <span className="checkbox__inner">Короткометражки</span>
       </label>
