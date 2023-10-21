@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import useResize from '../../hooks/useResize';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
@@ -12,16 +13,17 @@ const MoviesCardList = ({
   checkSavedMovies,
 }) => {
   const screenWidth = useResize();
-
   let cardsToShow;
 
   if (screenWidth >= 1280) {
-    cardsToShow = 12;
+    cardsToShow = 16;
   } else if (screenWidth >= 768) {
     cardsToShow = 8;
   } else {
     cardsToShow = 5;
   }
+
+  const [visibleCards, setVisibleCards] = useState(cardsToShow);
 
   const filteredMovies = searched
     ? movies
@@ -37,8 +39,23 @@ const MoviesCardList = ({
 
           return includesSearchQuery && (!shortFilm || movie.duration <= 40);
         })
-        .slice(0, cardsToShow)
+        .slice(0, visibleCards)
     : [];
+
+  const loadMoreCards = () => {
+    let newVisibleCards;
+
+    if (screenWidth >= 1280) {
+      newVisibleCards = visibleCards + 4;
+    } else if (screenWidth >= 768) {
+      newVisibleCards = visibleCards + 2;
+    } else {
+      newVisibleCards = visibleCards + 1;
+    }
+    setVisibleCards(newVisibleCards);
+  };
+
+  const isLoadMoreVisible = visibleCards === filteredMovies.length;
 
   return (
     <section className="movies-cards">
@@ -53,12 +70,15 @@ const MoviesCardList = ({
           />
         ))}
       </ul>
-      <button
-        type="button"
-        className="movies-cards__add-button"
-      >
-        Ещё
-      </button>
+      {isLoadMoreVisible && (
+        <button
+          type="button"
+          className="movies-cards__add-button"
+          onClick={loadMoreCards}
+        >
+          Ещё
+        </button>
+      )}
     </section>
   );
 };
