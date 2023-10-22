@@ -59,17 +59,22 @@ const MoviesCardList = ({
 
   return (
     <section className="movies-cards">
-      <ul className="movies-cards__list">
-        {filteredMovies.map((movie) => (
-          <MoviesCard
-            onDeleteSave={onDeleteSave}
-            onToggleSave={onToggleSave}
-            movie={movie}
-            key={movie._id || movie.movieId}
-            checkSavedMovies={checkSavedMovies}
-          />
-        ))}
-      </ul>
+      {searched && filteredMovies.length === 0 ? (
+        <p>Поиск не дал результатов</p>
+      ) : (
+        <ul className="movies-cards__list">
+          {filteredMovies.map((movie) => (
+            <MoviesCard
+              onDeleteSave={onDeleteSave}
+              onToggleSave={onToggleSave}
+              movie={movie}
+              key={movie._id || movie.movieId}
+              checkSavedMovies={checkSavedMovies}
+            />
+          ))}
+        </ul>
+      )}
+
       {isLoadMoreVisible && (
         <button
           type="button"
