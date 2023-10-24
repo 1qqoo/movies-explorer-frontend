@@ -2,30 +2,35 @@ import { useState } from 'react';
 import useResize from '../../hooks/useResize';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
+import {
+  ADDED_MOVIES_AMOUNT,
+  MOVIES_AMOUNT,
+  SCREEN_SIZE,
+} from '../../utils/constants';
+import { useMoviesContext } from '../../contexts/MoviesContext';
 
 const MoviesCardList = ({
   movies,
-  searchQuery,
-  shortFilm,
-  startSearching,
   onToggleSave,
   onDeleteSave,
   checkSavedMovies,
 }) => {
+  const { searchQuery, shortFilm, searched } = useMoviesContext();
+
   const screenWidth = useResize();
   let cardsToShow;
 
-  if (screenWidth >= 1280) {
-    cardsToShow = 16;
-  } else if (screenWidth >= 768) {
-    cardsToShow = 8;
+  if (screenWidth >= SCREEN_SIZE.L) {
+    cardsToShow = MOVIES_AMOUNT.L;
+  } else if (screenWidth >= SCREEN_SIZE.M) {
+    cardsToShow = MOVIES_AMOUNT.M;
   } else {
-    cardsToShow = 5;
+    cardsToShow = MOVIES_AMOUNT.S;
   }
 
   const [visibleCards, setVisibleCards] = useState(cardsToShow);
 
-  const filteredMovies = startSearching
+  const filteredMovies = searched
     ? movies
         .filter((movie) => {
           const movieNameRU = (movie.nameRU || '').toLowerCase();
@@ -45,12 +50,12 @@ const MoviesCardList = ({
   const loadMoreCards = () => {
     let newVisibleCards;
 
-    if (screenWidth >= 1280) {
-      newVisibleCards = visibleCards + 4;
-    } else if (screenWidth >= 768) {
-      newVisibleCards = visibleCards + 2;
+    if (screenWidth >= SCREEN_SIZE.L) {
+      newVisibleCards = visibleCards + ADDED_MOVIES_AMOUNT.L;
+    } else if (screenWidth >= SCREEN_SIZE.M) {
+      newVisibleCards = visibleCards + ADDED_MOVIES_AMOUNT.M;
     } else {
-      newVisibleCards = visibleCards + 1;
+      newVisibleCards = visibleCards + ADDED_MOVIES_AMOUNT.S;
     }
     setVisibleCards(newVisibleCards);
   };
@@ -59,7 +64,7 @@ const MoviesCardList = ({
 
   return (
     <section className="movies-cards">
-      {startSearching && filteredMovies.length === 0 ? (
+      {searched && filteredMovies.length === 0 ? (
         <p>Поиск не дал результатов</p>
       ) : (
         <ul className="movies-cards__list">

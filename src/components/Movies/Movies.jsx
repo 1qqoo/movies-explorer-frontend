@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
+import { useMoviesContext } from '../../contexts/MoviesContext';
 
 const Movies = ({
   movies,
@@ -10,9 +10,14 @@ const Movies = ({
   checkSavedMovies,
   getMovies,
 }) => {
-  const [searched, setSearched] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [shortFilm, setShortFilm] = useState(false);
+  const {
+    searchQuery,
+    setSearchQuery,
+    shortFilm,
+    setShortFilm,
+    searched,
+    setSearched,
+  } = useMoviesContext();
 
   const handleSearchChange = (query) => {
     if (!searched) {

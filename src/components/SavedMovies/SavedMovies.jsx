@@ -1,16 +1,22 @@
-import { useState } from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
+import { useMoviesContext } from '../../contexts/MoviesContext';
 
 const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
-  const [startSearching, setStartSearching] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [shortFilm, setShortFilm] = useState(false);
+  const {
+    searchQuery,
+    setSearchQuery,
+    shortFilm,
+    setShortFilm,
+
+    searched,
+    setSearched,
+  } = useMoviesContext();
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
-    setStartSearching(true);
+    setSearched(true);
   };
 
   const handleShortFilmChange = (checked) => {
@@ -25,7 +31,7 @@ const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
       />
       <MoviesCardList
         onDeleteSave={onDeleteSave}
-        startSearching={startSearching}
+        searched={searched}
         movies={movies}
         searchQuery={searchQuery}
         shortFilm={shortFilm}

@@ -13,6 +13,7 @@ import NotFound from '../NotFound/NotFound';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { MoviesProvider } from '../../contexts/MoviesContext';
 
 import ProtectedRoutes from '../../utils/ProtectedRoutes';
 import api from '../../utils/MainApi';
@@ -258,29 +259,35 @@ const App = () => {
             path="/"
             element={<Main />}
           ></Route>
+
           <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
             <Route
               path="/movies"
               element={
-                <Movies
-                  getMovies={getAllMovies}
-                  movies={movies}
-                  onToggleSave={addMovieToSavedMovies}
-                  onDeleteSave={deleteMovieToSavedMovies}
-                  checkSavedMovies={checkSavedMovies}
-                />
+                <MoviesProvider>
+                  <Movies
+                    getMovies={getAllMovies}
+                    movies={movies}
+                    onToggleSave={addMovieToSavedMovies}
+                    onDeleteSave={deleteMovieToSavedMovies}
+                    checkSavedMovies={checkSavedMovies}
+                  />
+                </MoviesProvider>
               }
             ></Route>
             <Route
               path="/saved-movies"
               element={
-                <SavedMovies
-                  movies={savedMovies}
-                  onDeleteSave={deleteMovieToSavedMovies}
-                  checkSavedMovies={checkSavedMovies}
-                />
+                <MoviesProvider>
+                  <SavedMovies
+                    movies={savedMovies}
+                    onDeleteSave={deleteMovieToSavedMovies}
+                    checkSavedMovies={checkSavedMovies}
+                  />
+                </MoviesProvider>
               }
             ></Route>
+
             <Route
               path="/profile"
               element={
