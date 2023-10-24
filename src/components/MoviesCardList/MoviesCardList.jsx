@@ -7,7 +7,7 @@ const MoviesCardList = ({
   movies,
   searchQuery,
   shortFilm,
-  searched,
+  startSearching,
   onToggleSave,
   onDeleteSave,
   checkSavedMovies,
@@ -25,7 +25,7 @@ const MoviesCardList = ({
 
   const [visibleCards, setVisibleCards] = useState(cardsToShow);
 
-  const filteredMovies = searched
+  const filteredMovies = startSearching
     ? movies
         .filter((movie) => {
           const movieNameRU = (movie.nameRU || '').toLowerCase();
@@ -59,7 +59,7 @@ const MoviesCardList = ({
 
   return (
     <section className="movies-cards">
-      {searched && filteredMovies.length === 0 ? (
+      {startSearching && filteredMovies.length === 0 ? (
         <p>Поиск не дал результатов</p>
       ) : (
         <ul className="movies-cards__list">

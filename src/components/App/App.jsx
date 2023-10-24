@@ -40,7 +40,7 @@ const App = () => {
     status: '',
     message: '',
   });
-  const [movies, setMovies] = useState(localFilms());
+  const [movies, setMovies] = useState(returnLocalFilms());
   const [savedMovies, setSavedMovies] = useState([]);
 
   const [isOpenInfoTooltip, setIsOpenInfoTooltip] = useState(false);
@@ -124,7 +124,7 @@ const App = () => {
       .catch(console.error);
   };
 
-  function localFilms() {
+  function returnLocalFilms() {
     return JSON.parse(localStorage.getItem('movies') ?? '[]');
   }
 
@@ -229,29 +229,31 @@ const App = () => {
           />
         )}
         <Routes>
-          <Route
-            path="/signin"
-            element={
-              <Login
-                isLoggedIn={isLoggedIn}
-                loginUser={loginUser}
-                errorMessage={loginError}
-                title="Вход"
-                buttonText="Войти"
-              />
-            }
-          ></Route>
-          <Route
-            path="/signup"
-            element={
-              <Register
-                isLoggedIn={isLoggedIn}
-                registerUser={registerUser}
-                title={'Регистрация'}
-                buttonText={'Зарегистрироваться'}
-              />
-            }
-          ></Route>
+          <Route element={<ProtectedRoutes isLoggedIn={!isLoggedIn} />}>
+            <Route
+              path="/signin"
+              element={
+                <Login
+                  isLoggedIn={isLoggedIn}
+                  loginUser={loginUser}
+                  errorMessage={loginError}
+                  title="Вход"
+                  buttonText="Войти"
+                />
+              }
+            ></Route>
+            <Route
+              path="/signup"
+              element={
+                <Register
+                  isLoggedIn={isLoggedIn}
+                  registerUser={registerUser}
+                  title={'Регистрация'}
+                  buttonText={'Зарегистрироваться'}
+                />
+              }
+            ></Route>
+          </Route>
           <Route
             path="/"
             element={<Main />}

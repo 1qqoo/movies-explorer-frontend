@@ -4,13 +4,13 @@ import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
 
 const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
-  const [searched, setSearched] = useState(false);
+  const [startSearching, setStartSearching] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [shortFilm, setShortFilm] = useState(false);
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
-    setSearched(true);
+    setStartSearching(true);
   };
 
   const handleShortFilmChange = (checked) => {
@@ -25,7 +25,7 @@ const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
       />
       <MoviesCardList
         onDeleteSave={onDeleteSave}
-        searched={searched}
+        startSearching={startSearching}
         movies={movies}
         searchQuery={searchQuery}
         shortFilm={shortFilm}
