@@ -144,8 +144,7 @@ const App = () => {
           status: true,
           message: 'Вы успешно зарегистрировались!',
         });
-        navigate('/');
-        navigate('/sign-in', { replace: true });
+        loginUser({ email: userData.email, password: userData.password });
       })
       .catch((err) => {
         setIsOpenInfoTooltip(true);
