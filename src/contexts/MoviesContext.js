@@ -8,15 +8,15 @@ export const useMoviesContext = () => {
 
 export const MoviesProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [shortFilm, setShortFilm] = useState(false);
+  // const [shortFilm, setShortFilm] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [searched, setSearched] = useState(false);
 
   const contextValue = {
     searchQuery,
     setSearchQuery,
-    shortFilm,
-    setShortFilm,
+    // shortFilm,
+    // setShortFilm,
     savedMovies,
     setSavedMovies,
     searched,

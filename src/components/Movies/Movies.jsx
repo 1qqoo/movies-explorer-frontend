@@ -2,7 +2,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 import { useMoviesContext } from '../../contexts/MoviesContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Movies = ({
   movies,
@@ -14,11 +14,13 @@ const Movies = ({
   const {
     searchQuery,
     setSearchQuery,
-    shortFilm,
-    setShortFilm,
+    // shortFilm,
+    // setShortFilm,
     searched,
     setSearched,
   } = useMoviesContext();
+
+  const [shortFilm, setShortFilm] = useState(false);
 
   const handleSearchChange = (query) => {
     if (!searched) {
@@ -30,13 +32,22 @@ const Movies = ({
 
   const handleShortFilmChange = (checked) => {
     setShortFilm(checked);
+    localStorage.setItem('shortFilm', checked);
   };
+
+  useEffect(() => {
+    const storedIsShortFilmChecked = localStorage.getItem('shortFilm');
+    if (storedIsShortFilmChecked !== null) {
+      setShortFilm(storedIsShortFilmChecked === 'true');
+    }
+  }, []);
 
   return (
     <main className="movies">
       <SearchForm
         onSearch={handleSearchChange}
         onShortFilmChange={handleShortFilmChange}
+        shortFilm={shortFilm}
       />
       <MoviesCardList
         checkSavedMovies={checkSavedMovies}

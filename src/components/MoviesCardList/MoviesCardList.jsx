@@ -7,16 +7,16 @@ import {
   MOVIES_AMOUNT,
   SCREEN_SIZE,
 } from '../../utils/constants';
-import { useMoviesContext } from '../../contexts/MoviesContext';
 
 const MoviesCardList = ({
   movies,
   onToggleSave,
   onDeleteSave,
   checkSavedMovies,
+  searchQuery,
+  shortFilm,
+  searched,
 }) => {
-  const { searchQuery, shortFilm, searched } = useMoviesContext();
-
   const screenWidth = useResize();
   let cardsToShow;
 
