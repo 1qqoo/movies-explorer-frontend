@@ -2,6 +2,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 import { useMoviesContext } from '../../contexts/MoviesContext';
+import { useState } from 'react';
 
 const Movies = ({
   movies,
