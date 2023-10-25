@@ -5,14 +5,8 @@ import { useMoviesContext } from '../../contexts/MoviesContext';
 import { useEffect, useState } from 'react';
 
 const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
-  const {
-    searchQuery,
-    setSearchQuery,
-    // shortFilm,
-    // setShortFilm,
-    searched,
-    setSearched,
-  } = useMoviesContext();
+  const { searchQuery, setSearchQuery, searched, setSearched } =
+    useMoviesContext();
 
   const [shortFilmSave, setShortFilmSave] = useState(false);
 

@@ -291,10 +291,12 @@ const App = () => {
             <Route
               path="/profile"
               element={
-                <Profile
-                  onClick={logOut}
-                  updateUser={updateUser}
-                />
+                <MoviesProvider>
+                  <Profile
+                    onClick={logOut}
+                    updateUser={updateUser}
+                  />
+                </MoviesProvider>
               }
             ></Route>
             <Route
