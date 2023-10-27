@@ -2,8 +2,15 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-const SearchForm = ({ onSearch, onShortFilmChange, shortFilm }) => {
-  const { values, handleChange } = useFormWithValidation();
+const SearchForm = ({
+  onSearch,
+  onShortFilmChange,
+  shortFilm,
+  searchQuery = '',
+}) => {
+  const { values, handleChange } = useFormWithValidation({
+    search: searchQuery,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

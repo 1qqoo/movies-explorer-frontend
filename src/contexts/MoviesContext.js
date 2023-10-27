@@ -7,11 +7,30 @@ export const useMoviesContext = () => {
 };
 
 export const MoviesProvider = ({ children }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searched, setSearched] = useState(false);
-  const [shortFilm, setShortFilm] = useState(false);
-  const [foundMovies, setFoundMovies] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(restoreSearchQuery());
+  const [searched, setSearched] = useState(restoreSearched());
+  const [shortFilm, setShortFilm] = useState(restoreShortFilm());
+  const [foundMovies, setFoundMovies] = useState(restoreFoundMovies());
 
+  function restoreSearchQuery() {
+    const storedSearchQuery = localStorage.getItem('searchQuery') ?? '';
+    return storedSearchQuery;
+  }
+
+  function restoreSearched() {
+    const storedSearched = localStorage.getItem('searched') ?? false;
+    return storedSearched === 'true';
+  }
+
+  function restoreShortFilm() {
+    const storedShortFilm = localStorage.getItem('shortFilm') ?? false;
+    return storedShortFilm === 'true';
+  }
+
+  function restoreFoundMovies() {
+    const storedFoundMovies = localStorage.getItem('foundMovies') ?? '[]';
+    return JSON.parse(storedFoundMovies);
+  }
   useEffect(() => {
     localStorage.setItem('searchQuery', searchQuery);
     localStorage.setItem('searched', searched);
@@ -20,28 +39,6 @@ export const MoviesProvider = ({ children }) => {
       localStorage.setItem('foundMovies', JSON.stringify(foundMovies));
     }
   }, [searchQuery, searched, shortFilm, foundMovies]);
-
-  useEffect(() => {
-    const storedSearchQuery = localStorage.getItem('searchQuery');
-    if (storedSearchQuery) {
-      setSearchQuery(storedSearchQuery);
-    }
-
-    const storedSearched = localStorage.getItem('searched');
-    if (storedSearched) {
-      setSearched(storedSearched === 'true');
-    }
-
-    const storedShortFilm = localStorage.getItem('shortFilm');
-    if (storedShortFilm) {
-      setShortFilm(storedShortFilm === 'true');
-    }
-
-    const storedFoundMovies = localStorage.getItem('foundMovies');
-    if (storedFoundMovies) {
-      setFoundMovies(JSON.parse(storedFoundMovies));
-    }
-  }, []);
 
   const contextValue = {
     searchQuery,

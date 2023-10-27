@@ -2,7 +2,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
 import { useMoviesContext } from '../../contexts/MoviesContext';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
   const { searchQuery, setSearchQuery, searched, setSearched } =
@@ -19,13 +19,6 @@ const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
     setShortFilmSave(checked);
     localStorage.setItem('shortFilmSave', checked);
   };
-
-  useEffect(() => {
-    const storedIsShortFilmChecked = localStorage.getItem('shortFilmSave');
-    if (storedIsShortFilmChecked !== null) {
-      setShortFilmSave(storedIsShortFilmChecked === 'true');
-    }
-  }, []);
 
   return (
     <main className="saved-movies">
