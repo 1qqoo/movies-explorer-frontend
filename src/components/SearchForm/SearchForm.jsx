@@ -7,7 +7,7 @@ const SearchForm = ({ onSearch, onShortFilmChange, shortFilm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(values);
+    onSearch(values.search);
   };
 
   const handleShortFilmToggle = (e) => {

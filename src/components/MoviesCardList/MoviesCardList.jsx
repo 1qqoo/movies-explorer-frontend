@@ -36,7 +36,7 @@ const MoviesCardList = ({
           const movieNameRU = (movie.nameRU || '').toLowerCase();
           const movieNameEN = (movie.nameEN || '').toLowerCase();
 
-          const query = searchQuery.search || '';
+          const query = searchQuery || '';
 
           const includesSearchQuery =
             movieNameRU.includes(query.toLowerCase()) ||

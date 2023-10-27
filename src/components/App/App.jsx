@@ -222,49 +222,49 @@ const App = () => {
   }
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="app">
-        {headerPaths.includes(path) && (
-          <Header
-            isLoggedIn={isLoggedIn}
-            isBurgerOpened={isBurgerOpened}
-          />
-        )}
-        <Routes>
-          <Route element={<ProtectedRoutes isLoggedIn={!isLoggedIn} />}>
+      <MoviesProvider>
+        <div className="app">
+          {headerPaths.includes(path) && (
+            <Header
+              isLoggedIn={isLoggedIn}
+              isBurgerOpened={isBurgerOpened}
+            />
+          )}
+          <Routes>
+            <Route element={<ProtectedRoutes isLoggedIn={!isLoggedIn} />}>
+              <Route
+                path="/signin"
+                element={
+                  <Login
+                    isLoggedIn={isLoggedIn}
+                    loginUser={loginUser}
+                    errorMessage={loginError}
+                    title="Вход"
+                    buttonText="Войти"
+                  />
+                }
+              ></Route>
+              <Route
+                path="/signup"
+                element={
+                  <Register
+                    isLoggedIn={isLoggedIn}
+                    registerUser={registerUser}
+                    title={'Регистрация'}
+                    buttonText={'Зарегистрироваться'}
+                  />
+                }
+              ></Route>
+            </Route>
             <Route
-              path="/signin"
-              element={
-                <Login
-                  isLoggedIn={isLoggedIn}
-                  loginUser={loginUser}
-                  errorMessage={loginError}
-                  title="Вход"
-                  buttonText="Войти"
-                />
-              }
+              path="/"
+              element={<Main />}
             ></Route>
-            <Route
-              path="/signup"
-              element={
-                <Register
-                  isLoggedIn={isLoggedIn}
-                  registerUser={registerUser}
-                  title={'Регистрация'}
-                  buttonText={'Зарегистрироваться'}
-                />
-              }
-            ></Route>
-          </Route>
-          <Route
-            path="/"
-            element={<Main />}
-          ></Route>
 
-          <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
-            <Route
-              path="/movies"
-              element={
-                <MoviesProvider>
+            <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
+              <Route
+                path="/movies"
+                element={
                   <Movies
                     getMovies={getAllMovies}
                     movies={movies}
@@ -272,47 +272,43 @@ const App = () => {
                     onDeleteSave={deleteMovieToSavedMovies}
                     checkSavedMovies={checkSavedMovies}
                   />
-                </MoviesProvider>
-              }
-            ></Route>
-            <Route
-              path="/saved-movies"
-              element={
-                <MoviesProvider>
+                }
+              ></Route>
+              <Route
+                path="/saved-movies"
+                element={
                   <SavedMovies
                     movies={savedMovies}
                     onDeleteSave={deleteMovieToSavedMovies}
                     checkSavedMovies={checkSavedMovies}
                   />
-                </MoviesProvider>
-              }
-            ></Route>
+                }
+              ></Route>
 
-            <Route
-              path="/profile"
-              element={
-                <MoviesProvider>
+              <Route
+                path="/profile"
+                element={
                   <Profile
                     onClick={logOut}
                     updateUser={updateUser}
                   />
-                </MoviesProvider>
-              }
-            ></Route>
-            <Route
-              path="*"
-              element={<NotFound onBack={goBack} />}
-            />
-          </Route>
-        </Routes>
-        {footerPaths.includes(path) && <Footer />}
-        <InfoTooltip
-          isRegister={isStatus}
-          isOpen={isOpenInfoTooltip}
-          onClose={closeAllPopups}
-          alt={'Статус'}
-        />
-      </div>
+                }
+              ></Route>
+              <Route
+                path="*"
+                element={<NotFound onBack={goBack} />}
+              />
+            </Route>
+          </Routes>
+          {footerPaths.includes(path) && <Footer />}
+          <InfoTooltip
+            isRegister={isStatus}
+            isOpen={isOpenInfoTooltip}
+            onClose={closeAllPopups}
+            alt={'Статус'}
+          />
+        </div>
+      </MoviesProvider>
     </CurrentUserContext.Provider>
   );
 };

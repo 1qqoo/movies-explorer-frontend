@@ -41,7 +41,7 @@ const Movies = ({
     if (searchIsSuccessful) {
       setFoundMovies(foundMovies);
     }
-  }, [searchQuery, foundMovies, setFoundMovies]);
+  }, [searchQuery, foundMovies, setFoundMovies, setShortFilm]);
 
   return (
     <main className="movies">
