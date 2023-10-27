@@ -5,13 +5,13 @@ import { useMoviesContext } from '../../contexts/MoviesContext';
 import { useState } from 'react';
 
 const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
-  const { searchQuery, setSearchQuery, searched, setSearched } =
-    useMoviesContext();
+  const { searched, setSearched } = useMoviesContext();
 
+  const [searchQuerySave, setSearchQuerySave] = useState('');
   const [shortFilmSave, setShortFilmSave] = useState(false);
 
   const handleSearchChange = (query) => {
-    setSearchQuery(query);
+    setSearchQuerySave(query);
     setSearched(true);
   };
 
@@ -31,7 +31,7 @@ const SavedMovies = ({ movies, onDeleteSave, checkSavedMovies }) => {
         onDeleteSave={onDeleteSave}
         searched={searched}
         movies={movies}
-        searchQuery={searchQuery}
+        searchQuery={searchQuerySave}
         shortFilm={shortFilmSave}
         checkSavedMovies={checkSavedMovies}
       />
