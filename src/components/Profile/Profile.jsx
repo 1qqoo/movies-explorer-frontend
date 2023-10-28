@@ -2,9 +2,17 @@ import './Profile.css';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 import { useContext, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { useMoviesContext } from '../../contexts/MoviesContext';
 
-export default function Profile({ onClick, updateUser }) {
+export default function Profile({ onLogOut, updateUser }) {
   const currentUser = useContext(CurrentUserContext);
+  const { resetMoviesContext } = useMoviesContext();
+
+  const handleLogOut = () => {
+    onLogOut();
+    resetMoviesContext();
+  };
+
   const { values, handleChange, errors, isValid } = useFormWithValidation({
     name: currentUser.name,
     email: currentUser.email,
@@ -92,7 +100,7 @@ export default function Profile({ onClick, updateUser }) {
               <button
                 type="button"
                 className="profile__button-exit"
-                onClick={onClick}
+                onClick={handleLogOut}
               >
                 Выйти из аккаунта
               </button>

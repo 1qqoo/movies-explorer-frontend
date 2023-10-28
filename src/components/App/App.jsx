@@ -136,52 +136,48 @@ const App = () => {
   }
 
   // Регистрация, авторизация =================================================>
-  const registerUser = (userData) => {
-    api
-      .registerUser(userData)
-      .then(() => {
-        setIsOpenInfoTooltip(true);
-        setIsStatus({
-          status: true,
-          message: 'Вы успешно зарегистрировались!',
-        });
-        loginUser({ email: userData.email, password: userData.password });
-      })
-      .catch((err) => {
-        setIsOpenInfoTooltip(true);
-        setIsStatus({
-          status: false,
-          message: 'Что-то пошло не так! Попробуйте ещё раз.',
-        });
-        console.log(err);
+  const registerUser = async (userData) => {
+    try {
+      await api.registerUser(userData);
+      setIsOpenInfoTooltip(true);
+      setIsStatus({
+        status: true,
+        message: 'Вы успешно зарегистрировались!',
       });
+      loginUser({ email: userData.email, password: userData.password });
+    } catch (err) {
+      setIsOpenInfoTooltip(true);
+      setIsStatus({
+        status: false,
+        message: 'Что-то пошло не так! Попробуйте ещё раз.',
+      });
+      console.log(err);
+    }
   };
 
-  const loginUser = (loginData) => {
-    api
-      .loginUser(loginData)
-      .then((res) => {
-        setIsOpenInfoTooltip(true);
-        setIsStatus({
-          status: true,
-          message: 'Вы успешно вошли!',
-        });
-        setToken(res.token);
-        setIsLoggedIn(true);
-        api.setAuthHeaders(res.token);
-        localStorage.setItem('jwt', res.token);
-
-        navigate('/movies');
-      })
-      .catch((err) => {
-        setIsOpenInfoTooltip(true);
-        setIsStatus({
-          status: false,
-          message: 'Что-то пошло не так! Попробуйте ещё раз.',
-        });
-        console.log(err);
-        setLoginError('Что-то пошло не так! Попробуйте ещё раз.');
+  const loginUser = async (loginData) => {
+    try {
+      const res = await api.loginUser(loginData);
+      setIsOpenInfoTooltip(true);
+      setIsStatus({
+        status: true,
+        message: 'Вы успешно вошли!',
       });
+      setToken(res.token);
+      setIsLoggedIn(true);
+      api.setAuthHeaders(res.token);
+      localStorage.setItem('jwt', res.token);
+
+      navigate('/movies');
+    } catch (err) {
+      setIsOpenInfoTooltip(true);
+      setIsStatus({
+        status: false,
+        message: 'Что-то пошло не так! Попробуйте ещё раз.',
+      });
+      console.log(err);
+      setLoginError('Что-то пошло не так! Попробуйте ещё раз.');
+    }
   };
 
   const logOut = () => {
@@ -289,7 +285,7 @@ const App = () => {
                 path="/profile"
                 element={
                   <Profile
-                    onClick={logOut}
+                    onLogOut={logOut}
                     updateUser={updateUser}
                   />
                 }

@@ -31,6 +31,14 @@ export const MoviesProvider = ({ children }) => {
     const storedFoundMovies = localStorage.getItem('foundMovies') ?? '[]';
     return JSON.parse(storedFoundMovies);
   }
+
+  const resetMoviesContext = () => {
+    setSearchQuery('');
+    setSearched(false);
+    setShortFilm(false);
+    setFoundMovies([]);
+  };
+
   useEffect(() => {
     localStorage.setItem('searchQuery', searchQuery);
     localStorage.setItem('searched', searched);
@@ -49,6 +57,7 @@ export const MoviesProvider = ({ children }) => {
     setShortFilm,
     foundMovies,
     setFoundMovies,
+    resetMoviesContext,
   };
 
   return (
