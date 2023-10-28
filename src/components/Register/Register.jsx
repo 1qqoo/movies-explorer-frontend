@@ -1,16 +1,20 @@
 import './Register.css';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 import logo from '../../images/logo.svg';
 
 const Register = ({ registerUser }) => {
+  const [isRequesting, setIsRequesting] = useState(false);
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(values);
+    setIsRequesting(true);
+    registerUser(values).finally(() => {
+      setIsRequesting(false);
+    });
   };
 
   useEffect(() => {
@@ -91,10 +95,8 @@ const Register = ({ registerUser }) => {
           </div>
           <button
             type="submit"
-            className={`register__button ${
-              !isValid && 'register__button_disabled'
-            }`}
-            disabled={!isValid}
+            className="register__button"
+            disabled={!isValid || isRequesting}
           >
             Зарегистрироваться
           </button>
