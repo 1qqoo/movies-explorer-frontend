@@ -133,7 +133,7 @@
   opacity: 0.8;
 }
 
-.profile__button-edit_disabled {
+.profile__button-edit:disabled {
   color: #8b8b8b;
   cursor: default;
   outline: none;
@@ -145,7 +145,7 @@
   line-height: normal;
 }
 
-.profile__button-edit_disabled:hover {
+.profile__button-edit:disabled:hover {
   opacity: 1;
 }
 
@@ -155,7 +155,7 @@
   color: aliceblue;
 }
 
-.profile__button-save_disabled {
+.profile__button-save:disabled {
   background-color: rgba(248, 248, 248, 1);
   color: #424242;
 }

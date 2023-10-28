@@ -18,6 +18,8 @@ export default function Profile({ onLogOut, updateUser }) {
     email: currentUser.email,
   });
   const [isEditProfile, setIsEditProfile] = useState(false);
+  const [isRequesting, setIsRequesting] = useState(false);
+
   const openEditProfile = (e) => {
     e.preventDefault();
     setIsEditProfile(true);
@@ -25,9 +27,14 @@ export default function Profile({ onLogOut, updateUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUser(values).then(() => {
-      setIsEditProfile(false);
-    });
+    setIsRequesting(true);
+    updateUser(values)
+      .then(() => {
+        setIsEditProfile(false);
+      })
+      .finally(() => {
+        setIsRequesting(false);
+      });
   };
 
   const requirementValidity =
@@ -109,12 +116,8 @@ export default function Profile({ onLogOut, updateUser }) {
             <div className="profile__button-container">
               <button
                 type="submit"
-                className={
-                  !requirementValidity
-                    ? 'profile__button-save'
-                    : 'profile__button-save profile__button-save_disabled'
-                }
-                disabled={requirementValidity ? true : false}
+                className="profile__button-save"
+                disabled={requirementValidity || isRequesting}
               >
                 Сохранить
               </button>
