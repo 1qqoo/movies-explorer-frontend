@@ -131,13 +131,13 @@
   opacity: 0.8;
 }
 
-.login__button_disabled {
+.login__button:disabled {
   background-color: #f8f8f8;
   color: #c2c2c2;
   cursor: default;
 }
 
-.login__button_disabled:hover {
+.login__button:disabled:hover {
   opacity: 1;
 }
 

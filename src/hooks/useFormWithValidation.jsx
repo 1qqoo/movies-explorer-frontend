@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 import isEmail from 'validator/es/lib/isEmail';
 
-const useFormWithValidation = () => {
-  const [values, setValues] = useState({});
+const useFormWithValidation = (initValues = {}) => {
+  const [values, setValues] = useState(initValues);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
@@ -12,7 +12,7 @@ const useFormWithValidation = () => {
 
     if (name === 'name' && input.validity.patternMismatch) {
       input.setCustomValidity(
-        'Имя должно содержать только латиницу, кириллицу, пробел или дефис.'
+        'Имя должно содержать только латиницу, кириллицу.'
       );
     } else {
       input.setCustomValidity('');
@@ -26,7 +26,10 @@ const useFormWithValidation = () => {
       }
     }
 
-    setValues({ ...values, [name]: value }); // универсальный обработчик полей
+    setValues({
+      ...values,
+      [input.name]: input.type === 'checkbox' ? input.checked : input.value,
+    }); // универсальный обработчик полей
     setErrors({ ...errors, [name]: input.validationMessage }); // ошибок
     setIsValid(input.closest('form').checkValidity()); // проверка валидности
   };

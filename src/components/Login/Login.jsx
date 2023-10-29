@@ -1,16 +1,20 @@
 import './Login.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import useFormWithValidation from '../../components/hooks/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-const Login = ({ logIn }) => {
+const Login = ({ loginUser }) => {
+  const [isRequesting, setIsRequesting] = useState(false);
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    logIn(values);
+    setIsRequesting(true);
+    loginUser(values).finally(() => {
+      setIsRequesting(false);
+    });
   }
 
   useEffect(() => {
@@ -73,9 +77,8 @@ const Login = ({ logIn }) => {
           </div>
           <button
             type="submit"
-            className={`login__button ${!isValid && 'login__button_disabled'}`}
-            disabled={!isValid}
-            onClick={logIn}
+            className="login__button"
+            disabled={!isValid || isRequesting}
           >
             Войти
           </button>

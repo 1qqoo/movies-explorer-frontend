@@ -14,6 +14,11 @@ html {
   height: 100%;
 }
 
+::-webkit-scrollbar {
+  width: 0; /* ширина scrollbar'a */
+  background: transparent; /* опционально */
+}
+
 /* Sections
    ========================================================================== */
 

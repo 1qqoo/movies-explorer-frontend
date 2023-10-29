@@ -1,8 +1,45 @@
 import './Profile.css';
-import useFormWithValidation from '../../components/hooks/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
+import { useContext, useState } from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { useMoviesContext } from '../../contexts/MoviesContext';
 
-export default function Profile({ onClick, isLoggedIn }) {
-  const { values, handleChange, errors, isValid } = useFormWithValidation();
+export default function Profile({ onLogOut, updateUser }) {
+  const currentUser = useContext(CurrentUserContext);
+  const { resetMoviesContext } = useMoviesContext();
+
+  const handleLogOut = () => {
+    onLogOut();
+    resetMoviesContext();
+  };
+
+  const { values, handleChange, errors, isValid } = useFormWithValidation({
+    name: currentUser.name,
+    email: currentUser.email,
+  });
+  const [isEditProfile, setIsEditProfile] = useState(false);
+  const [isRequesting, setIsRequesting] = useState(false);
+
+  const openEditProfile = (e) => {
+    e.preventDefault();
+    setIsEditProfile(true);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsRequesting(true);
+    updateUser(values)
+      .then(() => {
+        setIsEditProfile(false);
+      })
+      .finally(() => {
+        setIsRequesting(false);
+      });
+  };
+
+  const requirementValidity =
+    !isValid ||
+    (currentUser.name === values.name && currentUser.email === values.email);
 
   return (
     <main className="main">
@@ -11,26 +48,29 @@ export default function Profile({ onClick, isLoggedIn }) {
           className="profile__form"
           name="profile"
           noValidate
+          onSubmit={handleSubmit}
         >
-          <h1 className="profile__title">Привет, Виталий!</h1>
+          <h1 className="profile__title">Привет, {currentUser.name}!</h1>
           <div className="profile__labels-container">
             <label
               className="profile__label"
               type="name"
             >
               <span className="profile__label-text">Имя</span>
+
               <input
                 name="name"
                 className={`profile__input ${
                   errors.name && 'profile__input_error'
                 }`}
                 onChange={handleChange}
-                value={values.name || ''}
+                value={values.name}
                 type="text"
                 required
+                disabled={!isEditProfile}
                 minLength="2"
                 maxLength="30"
-                pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+                pattern={'^[а-яА-Яa-zA-Z0-9]+$'}
                 placeholder="Введите новое имя"
               />
             </label>
@@ -46,7 +86,8 @@ export default function Profile({ onClick, isLoggedIn }) {
                   errors.email && 'profile__input_error'
                 }`}
                 onChange={handleChange}
-                value={values.email || ''}
+                value={values.email}
+                disabled={!isEditProfile}
                 type="email"
                 required
                 placeholder="Введите новую почту"
@@ -54,25 +95,34 @@ export default function Profile({ onClick, isLoggedIn }) {
             </label>
             <span className="profile__error">{errors.email || ''}</span>
           </div>
-          <div className="profile__button-container">
-            <button
-              type="submit"
-              className={`profile__button-edit ${
-                !isValid && 'profile__button-edit_disabled'
-              }`}
-              disabled={!isValid ? true : false}
-            >
-              Редактировать
-            </button>
-            <button
-              type="submit"
-              className="profile__button-exit"
-              onClick={onClick}
-              isLoggedIn={isLoggedIn}
-            >
-              Выйти из аккаунта
-            </button>
-          </div>
+          {!isEditProfile ? (
+            <div className="profile__button-container">
+              <button
+                type="button"
+                onClick={openEditProfile}
+                className="profile__button-edit"
+              >
+                Редактировать
+              </button>
+              <button
+                type="button"
+                className="profile__button-exit"
+                onClick={handleLogOut}
+              >
+                Выйти из аккаунта
+              </button>
+            </div>
+          ) : (
+            <div className="profile__button-container">
+              <button
+                type="submit"
+                className="profile__button-save"
+                disabled={requirementValidity || isRequesting}
+              >
+                Сохранить
+              </button>
+            </div>
+          )}
         </form>
       </section>
     </main>

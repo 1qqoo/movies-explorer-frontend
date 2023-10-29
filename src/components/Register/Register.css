@@ -129,13 +129,13 @@
   opacity: 0.8;
 }
 
-.register__button_disabled {
+.register__button:disabled {
   background-color: #f8f8f8;
   color: #c2c2c2;
   cursor: default;
 }
 
-.register__button_disabled:hover {
+.register__button:disabled:hover {
   opacity: 1;
 }
 

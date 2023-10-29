@@ -44,7 +44,6 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
   align-items: center;
   border-bottom: 1px solid #424242;
   padding-bottom: 10px;
@@ -134,7 +133,7 @@
   opacity: 0.8;
 }
 
-.profile__button-edit_disabled {
+.profile__button-edit:disabled {
   color: #8b8b8b;
   cursor: default;
   outline: none;
@@ -146,8 +145,19 @@
   line-height: normal;
 }
 
-.profile__button-edit_disabled:hover {
+.profile__button-edit:disabled:hover {
   opacity: 1;
+}
+
+.profile__button-save {
+  padding: 14px 168px;
+  background-color: #3ddc84;
+  color: aliceblue;
+}
+
+.profile__button-save:disabled {
+  background-color: rgba(248, 248, 248, 1);
+  color: #424242;
 }
 
 .profile__button-exit {

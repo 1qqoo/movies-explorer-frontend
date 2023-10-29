@@ -1,17 +1,21 @@
 import './Register.css';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import useFormWithValidation from '../../components/hooks/useFormWithValidation';
+import { useEffect, useState } from 'react';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 import logo from '../../images/logo.svg';
 
-const Register = ({ register }) => {
+const Register = ({ registerUser }) => {
+  const [isRequesting, setIsRequesting] = useState(false);
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation();
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    register(values);
-  }
+    setIsRequesting(true);
+    registerUser(values).finally(() => {
+      setIsRequesting(false);
+    });
+  };
 
   useEffect(() => {
     resetForm();
@@ -51,7 +55,7 @@ const Register = ({ register }) => {
                 required
                 minLength="2"
                 maxLength="30"
-                pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+                pattern={'^[а-яА-Яa-zA-Z0-9]+$'}
                 placeholder="Введите имя"
               />
               <span className="register__error">{errors.name || ''}</span>
@@ -91,10 +95,8 @@ const Register = ({ register }) => {
           </div>
           <button
             type="submit"
-            className={`register__button ${
-              !isValid && 'register__button_disabled'
-            }`}
-            disabled={!isValid}
+            className="register__button"
+            disabled={!isValid || isRequesting}
           >
             Зарегистрироваться
           </button>
@@ -104,7 +106,6 @@ const Register = ({ register }) => {
           <Link
             to="/signin"
             className="register__link"
-            onClick={register}
           >
             Войти
           </Link>
